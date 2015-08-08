@@ -1,7 +1,7 @@
 <module>
 	<rawname>dynroute</rawname>
 	<name>Dynamic Routes</name>
-	<version>2.11.3.1</version>
+	<version>2.11.3.2</version>
 	<publisher>FreePBX</publisher>
 	<license>GPLv3+</license>
 	<type>setup</type>
@@ -11,6 +11,7 @@
 	</description>
 	<changelog>
 		See CHANGES.txt file in module directory for full details.
+		*2.11.3.2* Bug fix
 		*2.11.3.1* Bug fix
 		*2.11.3.0* Asterisk variable source type
 		*2.11.2.0* AGI support
@@ -36,6 +37,6 @@
 			<action>add</action>
                 </dynroute>
         </popovers>
-	<location>contributed_modules/release/dynroute-2.11.3.1.tgz</location>
+	<location>contributed_modules/release/dynroute-2.11.3.2.tgz</location>
 	<md5sum>045d0cf1961d0287d63d45a2593637ea</md5sum>
 </module>

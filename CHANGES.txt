@@ -15,6 +15,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 2015 08 08
+	- Release 2.11.3.2
+	- bug fix for Asterisk variable config
+	- Release 2.11.3.1
 	- bug fix for Asterisk Variable not writing out correct dialplan
 	- Asterisk variable query no longer subject to escaping of quote marks
 

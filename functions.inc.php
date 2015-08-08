@@ -144,9 +144,8 @@ function dynroute_get_config($engine) {
 					if ($item['sourcetype']=='agi') {
 						$query = str_replace('"','\"',$item['agi_query']);
 					}
-					if ($item['sourcetype']=='astvar') {
-						$query = str_replace('"','\"',$item['astvar_query']);
-					}
+					// above quote substitution is not done for astvar - the user must input the exact syntax
+
                                         $query = str_replace('[NUMBER]', '${CALLERID(num)}', $query);
                                         $query = str_replace('[INPUT]', '${dtmfinput}', $query);
                                         $query = str_replace('[DID]', '${FROM_DID}', $query);
@@ -202,7 +201,7 @@ function dynroute_get_config($engine) {
 						if ($item['chan_var_name_res'] != '')
 							$ext->add($id, 's', '', new ext_setvar('__DYNROUTE_'.$item['chan_var_name_res'], '${dynroute}'));
                                         }
-					if ($item['sourcetype']=='astvar' && $item['odbc_func']!='')
+					if ($item['sourcetype']=='astvar' && $item['astvar_query']!='')
 					{
 						$ext->add($id, 's', '', new ext_setvar('dynroute', $query));
 						if ($item['chan_var_name_res'] != '')

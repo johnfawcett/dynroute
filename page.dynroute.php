@@ -73,7 +73,7 @@ switch ($action) {
 <h2><?php echo _("Dynamic Routing"); ?></h2>
 <h3><?php 
 echo _("Instructions")."</h3>";
-echo _("You use the Dynamic Routing module to route calls based on sql lookup.")."\n";
+echo _("You use the Dynamic Routing module to route calls based on the info returned from an sql lookup via mysql or odbc, from an agi script, web service or the value of an asterisk variable.")."\n";
 echo _("For configuration instructions see").' <a href="http://www.voipsupport.it/pmwiki/pmwiki.php?n=Freepbx.DynamicRouting" target="_blank">www.voipsupport.it</a>'."\n"; ?>
 </div>
 

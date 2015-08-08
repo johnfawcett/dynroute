@@ -145,6 +145,9 @@ function dynroute_get_config($engine) {
 						$query = str_replace('"','\"',$item['agi_query']);
 					}
 					// above quote substitution is not done for astvar - the user must input the exact syntax
+					if ($item['sourcetype']=='astvar') {
+						$query = $item['astvar_query'];
+					}
 
                                         $query = str_replace('[NUMBER]', '${CALLERID(num)}', $query);
                                         $query = str_replace('[INPUT]', '${dtmfinput}', $query);

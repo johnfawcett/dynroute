@@ -1,27 +1,14 @@
-#    dynroute - Dynamic Route Module for Freepbx
-#    Copyright (C) 2009-2014 John Fawcett john@voipsupport.it
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#    This file was originally a derived work of the freepbx ivr 
-#    and calleridlookup modules in September 2009
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX dynroute module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-19 23:09+0200\n"
+"POT-Creation-Date: 2015-08-09 14:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +38,10 @@ msgstr ""
 msgid "Instructions"
 msgstr ""
 
-msgid "You use the Dynamic Routing module to route calls based on sql lookup."
+msgid ""
+"You use the Dynamic Routing module to route calls based on the info returned "
+"from an sql lookup via mysql or odbc, from an agi script, web service or the "
+"value of an asterisk variable."
 msgstr ""
 
 msgid "For configuration instructions see"
@@ -110,7 +100,7 @@ msgstr ""
 
 msgid ""
 "Message to be played to the caller. To add additional recordings please use "
-"the \"System Recordings\" MENU above"
+"the \"Admin->System Recordings\" MENU above"
 msgstr ""
 
 msgid "None"
@@ -121,13 +111,103 @@ msgid ""
 "\"Systems Recordings\" Module to edit this option"
 msgstr ""
 
+msgid "Validation Regex"
+msgstr ""
+
+msgid ""
+"Optional validation Regex expression to pass to Asterisk REGEX function to "
+"check input validity. If input is not valid, then the Invalid Retry "
+"Recording will be played for a maximum number of retries after which the "
+"call will be sent to Invalid destination after playing Invalid Recording"
+msgstr ""
+
+msgid "Retries"
+msgstr ""
+
+msgid "The maximum number of retries. If set to 0 there will be no retry."
+msgstr ""
+
+msgid "Invalid Retry Recording"
+msgstr ""
+
+msgid ""
+"Optional message to be played to the caller if validation fails. To add "
+"additional recordings please use the \"Admin->System Recordings\" MENU above"
+msgstr ""
+
+msgid ""
+"Optional message to be played to the caller if validation fails.<br><br>You "
+"must install and enable the \"Systems Recordings\" Module to edit this option"
+msgstr ""
+
+msgid "Invalid Recording"
+msgstr ""
+
+msgid ""
+"Optional message to be played to the caller if validation fails for last "
+"time. To add additional recordings please use the \"Admin->System Recordings"
+"\" MENU above"
+msgstr ""
+
+msgid ""
+"Optional message to be played to the caller if validation fails for last "
+"time.<br><br>You must install and enable the \"Systems Recordings\" Module "
+"to edit this option"
+msgstr ""
+
+msgid "Invalid Destination"
+msgstr ""
+
+msgid ""
+"Destination if validation fails for last time. If not set call will be sent "
+"to default destination."
+msgstr ""
+
 msgid "Source type"
 msgstr ""
 
 msgid ""
-"Select the source type, you can choose between:<ul><li>MySQL: It queries a "
-"MySQL database to retrieve the routing information</li><li>ODBC: It queries "
-"an ODBC data source to retrieve the routing information</li></ul>"
+"Select the source type from which to obtain the routing information, you can "
+"choose between:<ul><li>MySQL to query a MySQL database</li><li>ODBC to query "
+"an ODBC data source</li><li>URL to query a web service. NB must return only "
+"text string, no XML or HTML.</li><li>Asterisk AGI script - there is an "
+"example provided in the module download</li><li>Asterisk variable or "
+"expression. NB the text is used as is in the dialplan without escaping.</"
+"li></ul>"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "The url that returns the result"
+msgstr ""
+
+msgid "Asterisk variable"
+msgstr ""
+
+msgid "Variable string"
+msgstr ""
+
+msgid "The string containing one or more asterisk variables"
+msgstr ""
+
+msgid "AGI"
+msgstr ""
+
+msgid "AGI script and parameters"
+msgstr ""
+
+msgid ""
+"Name of the AGI script. Optional parameters may be appended using the , as "
+"separator"
+msgstr ""
+
+msgid "AGI result variable"
+msgstr ""
+
+msgid ""
+"The name of the variable in the script which must be set with the result. "
+"See test.agi for an example."
 msgstr ""
 
 msgid "ODBC"

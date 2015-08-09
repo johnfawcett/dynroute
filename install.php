@@ -1,6 +1,6 @@
 <?php
 //    dynroute - Dynamic Route Module for Freepbx
-//    Copyright (C) 2009-2014 John Fawcett john@voipsupport.it
+//    Copyright (C) 2009-2015 John Fawcett john@voipsupport.it
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -55,10 +55,15 @@ $sql = "
                 `agi_var_name_res` varchar(255), 
 		`astvar_query` text,
                 `enable_dtmf_input` varchar(8), 
-                `timeout` INT, 
+                `timeout` INT(11), 
                 `announcement_id` INT(11),
                 `chan_var_name` varchar(255), 
-                `chan_var_name_res` varchar(255) 
+                `chan_var_name_res` varchar(255),
+		`validation_regex` text, 
+                `max_retries` INT(11), 
+                `invalid_retry_rec_id` INT(11),
+                `invalid_rec_id` INT(11),
+                `invalid_dest` VARCHAR(255)
 	);
 	";
 sql($sql);
@@ -87,7 +92,7 @@ $sql = "SELECT timeout FROM dynroute";
 $check = $db->getRow($sql, DB_FETCHMODE_ASSOC);
 if(DB::IsError($check)) {
         // add new field
-        $sql = "ALTER TABLE dynroute ADD COLUMN `timeout` INT;";
+        $sql = "ALTER TABLE dynroute ADD COLUMN `timeout` INT(11);";
         $result = $db->query($sql);
         if(DB::IsError($result)) { die_freepbx($result->getDebugInfo()); }
 }
@@ -181,6 +186,46 @@ $check = $db->getRow($sql, DB_FETCHMODE_ASSOC);
 if(DB::IsError($check)) {
         // add new field
         $sql = "ALTER TABLE dynroute ADD COLUMN `astvar_query` TEXT;";
+        $result = $db->query($sql);
+        if(DB::IsError($result)) { die_freepbx($result->getDebugInfo()); }
+}
+$sql = "SELECT validation_regex FROM dynroute";
+$check = $db->getRow($sql, DB_FETCHMODE_ASSOC);
+if(DB::IsError($check)) {
+        // add new field
+        $sql = "ALTER TABLE dynroute ADD COLUMN `validation_regex` TEXT;";
+        $result = $db->query($sql);
+        if(DB::IsError($result)) { die_freepbx($result->getDebugInfo()); }
+}
+$sql = "SELECT max_retries FROM dynroute";
+$check = $db->getRow($sql, DB_FETCHMODE_ASSOC);
+if(DB::IsError($check)) {
+        // add new field
+        $sql = "ALTER TABLE dynroute ADD COLUMN `max_retries` INT(11);";
+        $result = $db->query($sql);
+        if(DB::IsError($result)) { die_freepbx($result->getDebugInfo()); }
+}
+$sql = "SELECT invalid_retry_rec_id FROM dynroute";
+$check = $db->getRow($sql, DB_FETCHMODE_ASSOC);
+if(DB::IsError($check)) {
+        // add new field
+        $sql = "ALTER TABLE dynroute ADD COLUMN `invalid_retry_rec_id` INT(11);";
+        $result = $db->query($sql);
+        if(DB::IsError($result)) { die_freepbx($result->getDebugInfo()); }
+}
+$sql = "SELECT invalid_rec_id FROM dynroute";
+$check = $db->getRow($sql, DB_FETCHMODE_ASSOC);
+if(DB::IsError($check)) {
+        // add new field
+        $sql = "ALTER TABLE dynroute ADD COLUMN `invalid_rec_id` INT(11);";
+        $result = $db->query($sql);
+        if(DB::IsError($result)) { die_freepbx($result->getDebugInfo()); }
+}
+$sql = "SELECT invalid_dest FROM dynroute";
+$check = $db->getRow($sql, DB_FETCHMODE_ASSOC);
+if(DB::IsError($check)) {
+        // add new field
+        $sql = "ALTER TABLE dynroute ADD COLUMN `invalid_dest` VARCHAR(255);";
         $result = $db->query($sql);
         if(DB::IsError($result)) { die_freepbx($result->getDebugInfo()); }
 }

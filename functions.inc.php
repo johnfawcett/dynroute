@@ -1,6 +1,6 @@
 <?php
 //    dynroute - Dynamic Route Module for Freepbx
-//    Copyright (C) 2009-2014 John Fawcett john@voipsupport.it
+//    Copyright (C) 2009-2015 John Fawcett john@voipsupport.it
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -89,11 +89,10 @@ function dynroute_getdestinfo($dest) {
 function dynroute_recordings_usage($recording_id) {
         global $active_modules;
 
-        $results = sql("SELECT `dynroute_id`, `displayname` FROM `dynroute` WHERE `announcement_id` = '$recording_id'","getAll",DB_FETCHMODE_ASSOC);
+        $results = sql("SELECT `dynroute_id`, `displayname` FROM `dynroute` WHERE `announcement_id` = '$recording_id' OR `invalid_retry_rec_id` = '$recording_id' OR `invalid_rec_id` = '$recording_id'","getAll",DB_FETCHMODE_ASSOC);
         if (empty($results)) {
                 return array();
         } else {
-                //$type = isset($active_modules['dynroute']['type'])?$active_modules['dynroute']['type']:'setup';
                 foreach ($results as $result) {
                         $usage_arr[] = array(
                                 'url_query' => 'config.php?display=dynroute&action=edit&id='.urlencode($result['dynroute_id']),
@@ -153,10 +152,12 @@ function dynroute_get_config($engine) {
                                         $query = str_replace('[INPUT]', '${dtmfinput}', $query);
                                         $query = str_replace('[DID]', '${FROM_DID}', $query);
 					$query = preg_replace('/\[([^\]]*)\]/','${DYNROUTE_$1}',$query);
-					$announcement_id = (isset($details['announcement_id']) ? $details['announcement_id'] : '');
+					$announcement_id = (isset($details['announcement_id']) ? $details['announcement_id'] : '0');
+					
 					if ($item['enable_dtmf_input']=='CHECKED')
 					{
-                                        	if ($announcement_id) {
+                                        	$ext->add($id, 's', '', new ext_setvar('__DYNROUTE_RETRIES', '0'));
+						if ($announcement_id) {
                                               		$announcement_msg = recordings_get_file($announcement_id);
                                         	} else {
 							$announcement_msg = '';
@@ -164,6 +165,11 @@ function dynroute_get_config($engine) {
 						$ext->add($id, 's', '', new ext_read('dtmfinput',$announcement_msg,'','','',$item['timeout']));
 						if ($item['chan_var_name'] != '')
 							$ext->add($id, 's', '', new ext_setvar('__DYNROUTE_'.$item['chan_var_name'], '${dtmfinput}'));
+						if ($item['validation_regex'] != '')
+						{
+							$ext->add($id, 's', '', new ext_setvar('__DYNROUTE_REGEX', '${REGEX("'.$item['validation_regex'].'" ${dtmfinput})}'));
+							$ext->add($id, 's', '', new ext_gotoif('$["${DYNROUTE_REGEX}" = "0"]',$id.',2,1'));
+						}
                                         }
 					if ($item['sourcetype']=='mysql' && $item['mysql_host']!='' && $item['mysql_query']!='')
 					{
@@ -224,6 +230,18 @@ function dynroute_get_config($engine) {
 					$dests = dynroute_get_dests($item['dynroute_id'],'y');
 					if (!empty($dests) && $dests[0]['dest'] != '') $ext->add($id, '1', '', new ext_goto($dests[0]['dest']));
 					$ext->add($id, '1', '', new ext_hangup(''));
+
+					if ($item['enable_dtmf_input']=='CHECKED' && $item['validation_regex'] != '')
+					{
+						$ext->add($id, '2', '', new ext_setvar('__DYNROUTE_RETRIES', '$[${DYNROUTE_RETRIES}+1]'));
+						$ext->add($id, '2', '', new ext_gotoif('$["${DYNROUTE_RETRIES}" > "'.$item['max_retries'].'"]',$id.',3,1'));
+						if ($item['invalid_retry_rec_id']!='0') $ext->add($id, '2', '', new ext_playback(recordings_get_file($item['invalid_retry_rec_id'])));
+						$ext->add($id, '2', '', new ext_goto($id.',s,2'));
+
+						if ($item['invalid_rec_id']!='0') $ext->add($id, '3', '', new ext_playback(recordings_get_file($item['invalid_rec_id'])));
+						if ($item['invalid_dest']!='') $ext->add($id, '3', '', new ext_goto($item['invalid_dest']));
+						$ext->add($id, '3', '', new ext_goto($id.',1,1'));
+					}
 				}
 			}
 		break;
@@ -280,8 +298,11 @@ function dynroute_do_edit($id, $post) {
         $timeout = isset($post['timeout'])?$post['timeout']:'';
         $chan_var_name = isset($post['chan_var_name'])?$post['chan_var_name']:'';
         $chan_var_name_res = isset($post['chan_var_name_res'])?$post['chan_var_name_res']:'';
- 
-	
+	$validation_regex = isset($post['validation_regex'])?$db->escapeSimple($post['validation_regex']):'';
+	$max_retries = isset($post['max_retries'])?$post['max_retries']:'';
+        $invalid_retry_rec_id = isset($post['invalid_retry_rec_id'])?$post['invalid_retry_rec_id']:'';
+        $invalid_rec_id = isset($post['invalid_rec_id'])?$post['invalid_rec_id']:'';
+        $invalid_dest = $post[$post['goto0'].'0'];
 	$sql = "
 	UPDATE dynroute 
 	SET 
@@ -302,7 +323,12 @@ function dynroute_do_edit($id, $post) {
 		enable_dtmf_input='$enable_dtmf_input',  
 		timeout='$timeout',  
 		chan_var_name='$chan_var_name',  
-		chan_var_name_res='$chan_var_name_res'  
+		chan_var_name_res='$chan_var_name_res',
+		validation_regex='$validation_regex',
+		max_retries='$max_retries',
+		invalid_retry_rec_id='$invalid_retry_rec_id',
+		invalid_rec_id='$invalid_rec_id',
+		invalid_dest='$invalid_dest'  
 	WHERE dynroute_id='$id'
 	";
 	sql($sql);
@@ -312,7 +338,6 @@ function dynroute_do_edit($id, $post) {
 	// Now, lets find all the goto's in the post. Destinations return gotoN => foo and get fooN for the dest.
 	// Is that right, or am I missing something?
 
-	$first_option=true;
 	foreach(array_keys($post) as $var) {
 		if (preg_match('/goto(\d+)/', $var, $match)) {
 			// This is a really horrible line of code. take N, and get value of fooN. See above. Note we
@@ -321,9 +346,10 @@ function dynroute_do_edit($id, $post) {
 			$cmd = $post['option'.$match[1]];
 			// Debugging if it all goes pear shaped.
 			// print "I think pushing $cmd does $dest<br>\n";
-			if ($first_option)  {
+			if ($match[1]==0) continue;
+			if ($match[1]==1)  {
 				dynroute_add_command($id, $cmd, $dest, 'y');
-				$first_option=false;
+				continue;
 			}
 			if (strlen($cmd))
 				dynroute_add_command($id, $cmd, $dest, 'n');

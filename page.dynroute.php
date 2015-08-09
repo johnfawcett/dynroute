@@ -1,6 +1,6 @@
 <?php 
 //    dynroute - Dynamic Route Module for Freepbx
-//    Copyright (C) 2009-2014 John Fawcett john@voipsupport.it
+//    Copyright (C) 2009-2015 John Fawcett john@voipsupport.it
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -152,7 +152,7 @@ function dynroute_show_edit($id, $nbroptions, $post) {
 
         if(function_exists('recordings_list')) { //only include if recordings is enabled ?>
                 <tr>
-                        <td><a href="#" class="info"><?php echo _("Announcement")?><span><?php echo _("Message to be played to the caller. To add additional recordings please use the \"System Recordings\" MENU above")?></span></a></td>
+                        <td><a href="#" class="info"><?php echo _("Announcement")?><span><?php echo _("Message to be played to the caller. To add additional recordings please use the \"Admin->System Recordings\" MENU above")?></span></a></td>
                         <td>
                                 <select name="annmsg_id" tabindex="<?php echo ++$tabindex;?>">
                                 <?php
@@ -183,8 +183,99 @@ function dynroute_show_edit($id, $nbroptions, $post) {
 <?php
         }
 ?>
+
+                <tr>
+                        <td><a href="#" class="info"><?php echo _("Validation Regex");?><span><?php echo _("Optional validation Regex expression to pass to Asterisk REGEX function to check input validity. If input is not valid, then the Invalid Retry Recording will be played for a maximum number of retries after which the call will be sent to Invalid destination after playing Invalid Recording");?></span></a></td>
+                        <td><input type="text" name="validation_regex" value="<?php echo $dynroute_details['validation_regex'] ?>" tabindex="<?php echo ++$tabindex;?>"></td>
+                </tr>
+
+                <tr>
+                        <td><a href="#" class="info"><?php echo _("Retries");?><span><?php echo _("The maximum number of retries. If set to 0 there will be no retry.");?></span></a></td>
+                        <td><input type="text" name="max_retries" value="<?php echo $dynroute_details['max_retries'] ?>" tabindex="<?php echo ++$tabindex;?>"></td>
+                </tr>
+
+<?php
+        $invalid_retry_rec_id = isset($dynroute_details['invalid_retry_rec_id'])?$dynroute_details['invalid_retry_rec_id']:'';
+
+        if(function_exists('recordings_list')) { //only include if recordings is enabled ?>
+                <tr>
+                        <td><a href="#" class="info"><?php echo _("Invalid Retry Recording")?><span><?php echo _("Optional message to be played to the caller if validation fails. To add additional recordings please use the \"Admin->System Recordings\" MENU above")?></span></a></td>
+                        <td>
+                                <select name="invalid_retry_rec_id" tabindex="<?php echo ++$tabindex;?>">
+                                <?php
+                                        $tresults = recordings_list();
+                                        echo '<option value="">'._("None")."</option>";
+                                        if (isset($tresults[0])) {
+                                                foreach ($tresults as $tresult) {
+                                                        echo '<option value="'.$tresult['id'].'"'.($tresult['id'] == $invalid_retry_rec_id ? ' SELECTED' : '').'>'.$tresult['displayname']."</option>\n";
+                                                }
+                                        }
+                                ?>
+                                </select>
+                        </td>
+                </tr>
+
+<?php
+        } else {
+?>
+                <tr>
+                        <td><a href="#" class="info"><?php echo _("Invalid Retry Recording")?><span><?php echo _("Optional message to be played to the caller if validation fails.<br><br>You must install and enable the \"Systems Recordings\" Module to edit this option")?></span></a></td>
+                        <td>
+                        <?php
+                                $default = (isset($invalid_retry_rec_id) ? $invalid_retry_rec_id : '');
+                        ?>
+                                <input type="hidden" name="invalid_retry_rec_id" value="<?php echo $default; ?>"><?php echo ($default != '' ? $default : 'None'); ?>
+                        </td>
+                </tr>
+<?php
+        }
+?>
+
+<?php
+        $invalid_rec_id = isset($dynroute_details['invalid_rec_id'])?$dynroute_details['invalid_rec_id']:'';
+
+        if(function_exists('recordings_list')) { //only include if recordings is enabled ?>
+                <tr>
+                        <td><a href="#" class="info"><?php echo _("Invalid Recording")?><span><?php echo _("Optional message to be played to the caller if validation fails for last time. To add additional recordings please use the \"Admin->System Recordings\" MENU above")?></span></a></td>
+                        <td>
+                                <select name="invalid_rec_id" tabindex="<?php echo ++$tabindex;?>">
+                                <?php
+                                        $tresults = recordings_list();
+                                        echo '<option value="">'._("None")."</option>";
+                                        if (isset($tresults[0])) {
+                                                foreach ($tresults as $tresult) {
+                                                        echo '<option value="'.$tresult['id'].'"'.($tresult['id'] == $invalid_rec_id ? ' SELECTED' : '').'>'.$tresult['displayname']."</option>\n";
+                                                }
+                                        }
+                                ?>
+                                </select>
+                        </td>
+                </tr>
+
+<?php
+        } else {
+?>
+                <tr>
+                        <td><a href="#" class="info"><?php echo _("Invalid Recording")?><span><?php echo _("Optional message to be played to the caller if validation fails for last time.<br><br>You must install and enable the \"Systems Recordings\" Module to edit this option")?></span></a></td>
+                        <td>
+                        <?php
+                                $default = (isset($invalid_rec_id) ? $invalid_rec_id : '');
+                        ?>
+                                <input type="hidden" name="invalid_rec_id" value="<?php echo $default; ?>"><?php echo ($default != '' ? $default : 'None'); ?>
+                        </td>
+                </tr>
+<?php
+        }
+?>
+
 		<tr>
-	                <td><a href="#" class="info"><?php echo _("Source type")?><span><?php echo _("Select the source type, you can choose between:<ul><li>MySQL: It queries a MySQL database to retrieve the routing information</li><li>ODBC: It queries an ODBC data source to retrieve the routing information</li></ul>")?></span></a></td>
+                        <td><a href="#" class="info"><?php echo _("Invalid Destination")?><span><?php echo _("Destination if validation fails for last time. If not set call will be sent to default destination.")?></span></a></td>
+
+			<td> <table> <?php $count=0; echo drawselects($dynroute_details['invalid_dest'],$count++); ?> </table> </td>
+		</tr>
+
+		<tr>
+	                <td><a href="#" class="info"><?php echo _("Source type")?><span><?php echo _("Select the source type from which to obtain the routing information, you can choose between:<ul><li>MySQL to query a MySQL database</li><li>ODBC to query an ODBC data source</li><li>URL to query a web service. NB must return only text string, no XML or HTML.</li><li>Asterisk AGI script - there is an example provided in the module download</li><li>Asterisk variable or expression. NB the text is used as is in the dialplan without escaping.</li></ul>")?></span></a></td>
 
 			<td>
                         <select id="sourcetype" name="sourcetype" onChange="javascript:displaySourceParameters(this, this.selectedIndex)" tabindex="<?php echo ++$tabindex;?>">
@@ -313,7 +404,7 @@ function dynroute_show_edit($id, $nbroptions, $post) {
 
 	$default_dest_row = dynroute_get_dests($id,'y');
 	if (!empty($default_dest_row)) $default_dest=$default_dest_row[0]['dest']; else $default_dest='';
-	$count = 0;
+
 ?>
 	<tr>
 	<td style="text-align:right;"><?php echo _("Default destination")?></td>

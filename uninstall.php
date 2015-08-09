@@ -1,6 +1,6 @@
 <?php
 //    dynroute - Dynamic Route Module for Freepbx
-//    Copyright (C) 2009-2014 John Fawcett john@voipsupport.it
+//    Copyright (C) 2009-2015 John Fawcett john@voipsupport.it
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -20,4 +20,3 @@ if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 
 sql('DROP TABLE IF EXISTS dynroute');
 sql('DROP TABLE IF EXISTS dynroute_dests');
-~ 

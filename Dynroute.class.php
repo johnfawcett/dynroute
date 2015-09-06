@@ -138,7 +138,7 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 		try{
 			$sql = "DROP TABLE IF EXISTS $table;";
 			$sth = $this->db->prepare($sql);
-			return $sth->execute();
+			$sth->execute();
 
 		} catch(PDOException $e) {
 			return $e->getMessage();
@@ -149,12 +149,13 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 		try{
 			$sql = "DROP TABLE IF EXISTS $table;";
 			$sth = $this->db->prepare($sql);
-			return $sth->execute();
+			$sth->execute();
 
 		} catch(PDOException $e) {
 			return $e->getMessage();
 
 		}
+		return;
 	}
 
 

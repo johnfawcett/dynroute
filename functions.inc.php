@@ -332,7 +332,7 @@ function dynroute_save_entries($id, $entries){
 
 //draw dynamic route entires table header
 function dynroute_draw_entries_table_header_dynroute() {
-	return  array(_('Ext'), _('Destination'), _('Delete'));
+	return  array(_('Match'), _('Destination'), _('Delete'));
 }
 
 //draw actualy entires

@@ -69,60 +69,301 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 		}
 
 		try{
-			$sql = "ALTER TABLE $table
-  				ADD PRIMARY KEY (`dynroute_id`,`selection`);";
-			$sth = $this->db->prepare($sql);
-			$sth->execute();
+			$sql = "SELECT INDEX_NAME FROM INFORMATION_SCHEMA.STATISTICS WHERE "
+				."`TABLE_CATALOG` = 'def' AND `TABLE_SCHEMA` = DATABASE() AND "
+				."`TABLE_NAME` = '$table' AND `INDEX_NAME` = 'PRIMARY' ";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE $table
+	  				ADD PRIMARY KEY (`dynroute_id`,`selection`);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
 		} catch(PDOException $e) {
 			return $e->getMessage();
 		}
 
-
-// upgrade from previous release
-
-		try{
-			$sql = "SELECT default_dest FROM dynroute";
-			$sth = $this->db->prepare($sql);
-			$sth->execute();
-		} catch(PDOException $e) {
-			$sql = "ALTER TABLE dynroute ADD COLUMN `default_dest` VARCHAR(255);";
-			$sth = $this->db->prepare($sql);
-			$sth->execute();
-		}
-
-		try{
-			$sql = "SELECT description FROM dynroute";
-			$sth = $this->db->prepare($sql);
-			$sth->execute();
-		} catch(PDOException $e) {
-			$sql = "ALTER TABLE dynroute ADD COLUMN `description` TEXT;";
-			$sth = $this->db->prepare($sql);
-			$sth->execute();
-		}
-
-		try{
-			$sql = "SELECT id FROM dynroute";
-			$sth = $this->db->prepare($sql);
-			$sth->execute();
-		} catch(PDOException $e) {
-			$sql = "ALTER TABLE dynroute CHANGE COLUMN `dynroute_id` `id` INT(11) AUTO_INCREMENT NOT NULL;";
-			$sth = $this->db->prepare($sql);
-			$sth->execute();
-		}
-
-		try{
-			$sql = "SELECT name FROM dynroute";
-			$sth = $this->db->prepare($sql);
-			$sth->execute();
-		} catch(PDOException $e) {
-			$sql = "ALTER TABLE dynroute CHANGE COLUMN `displayname` `name` VARCHAR(255);";
-			$sth = $this->db->prepare($sql);
-			$sth->execute();
-		}
-
-// rewrite default_dest data
-
 // upgrade from older releases
+
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'enable_dtmf_input'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `enable_dtmf_input` VARCHAR(8);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'timeout'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `timeout` INT(11);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'announcement_id'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `announcement_id` INT(11);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'chan_var_name'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `chan_var_name` VARCHAR(255);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'chan_var_name_res'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `chan_var_name_res` VARCHAR(255);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'odbc_func'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `odbc_func` VARCHAR(100);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'odbc_query'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `odbc_query` TEXT;";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+// the following upgrade change is further updated later for V.13. Do not move this later than V.13 upgrade statements
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute_dests` LIKE 'default_dest'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute_dests ADD COLUMN `default_dest` CHAR(1) default 'n';";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+				$sql = "UPDATE dynroute_dests set default_dest='y',selection='' WHERE selection='default';";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'url_query'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `url_query` TEXT;";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'agi_query'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `agi_query` TEXT;";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'agi_var_name'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `agi_var_name_res` VARCHAR(255);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'astvar_query'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `astvar_query` TEXT;";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'validation_regex'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `validation_regex` TEXT;";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'max_retries'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `max_retries` INT(11);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'invalid_retry_rec_id'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `invalid_retry_rec_id` INT(11);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'invalid_rec_id'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `invalid_rec_id` INT(11);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'invalid_dest'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `invalid_dest` VARCHAR(255);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+// new in this release
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'default_dest'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `default_dest` VARCHAR(255);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'description'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute ADD COLUMN `description` TEXT;";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'id'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute CHANGE COLUMN `dynroute_id` `id` INT(11) AUTO_INCREMENT NOT NULL;";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'name'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute CHANGE COLUMN `displayname` `name` VARCHAR(255);";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+// rewrite default_dest data from dynroute_dests to dynroute.default_dest
+
+		try{
+			$sql = "SELECT * FROM `dynroute_dests` WHERE default_dest='y'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (!empty($results)) {
+				$c = count($results);
+				echo _("There are $c default destinations in dynroute_dests to migrate\n");
+			} else {
+				echo _("No default destinations in dynroute_dests to migrate. Skipping...\n");
+			}	
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+
+// check about escaping
+
+
 
 		return;
 	}

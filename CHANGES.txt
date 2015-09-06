@@ -17,6 +17,9 @@
 2015 09 06
 	- Release 13.0.0
 	- Updated for Freepbx 13
+	- Note that this first release can only be used for new installs
+	  For upgrading from previous installs you must use the future
+          Release 13.0.1
 
 2015 08 09
 	- Release 2.11.4.0

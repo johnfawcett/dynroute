@@ -7,326 +7,597 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX dynroute module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-09 14:25+0100\n"
-"PO-Revision-Date: 2015-08-09 14:45+0100\n"
+"POT-Creation-Date: 2015-09-06 17:43+0200\n"
+"PO-Revision-Date: 2015-09-06 17:58+0200\n"
 "Last-Translator: John Fawcett <john@voipsupport.it>\n"
 "Language-Team: John Fawcett <john@voipsupport.it>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-msgid "There is a problem with installation Contact support\n"
-msgstr "L'installazione è fallita. Contatta l'amministratore del sistema\n"
+msgid "value to be matched"
+msgstr "valore da confrontare"
 
-#, php-format
-msgid "Route: %s"
-msgstr "Route: %s"
+msgid "Delete this entry. Dont forget to click Submit to save changes!"
+msgstr "Cancella. Ricorda di salvare la modifica."
 
-#, php-format
-msgid "Dynamic route: %s"
-msgstr "Route dinamico: %s"
+msgid "List Dynamc Routes"
+msgstr "Elenco Dynamic Routes"
 
-#, php-format
-msgid "Route: %s / Destination: %s"
-msgstr "Route: %s / Destinazione: %s"
+msgid "Add Dynamic Route"
+msgstr "Aggiungi Dynamic Route"
 
-msgid "Dynamic Routing"
-msgstr "Instradamento dinamico"
+msgid "Dynamic Route List"
+msgstr "Elenco Dynamic Routes"
 
-msgid "Instructions"
-msgstr "Istruzioni"
-
-msgid ""
-"You use the Dynamic Routing module to route calls based on the info returned "
-"from an sql lookup via mysql or odbc, from an agi script, web service or the "
-"value of an asterisk variable."
-msgstr ""
-"Il modulo Dynamic Routes può essere utilizzato per instradare le chiamate "
-"basate sulle info da una query sql (mysql o odbc), da uno script AGI, "
-"servizio web o da un variable asterisk"
-
-msgid "For configuration instructions see"
-msgstr "Per istruzioni sulla configurazione:"
-
-msgid "Add Route"
-msgstr "Aggiungi Route"
-
-msgid "Edit Menu"
-msgstr "Modifica"
-
-msgid "Delete"
-msgstr "Elimina"
-
-msgid "Route"
-msgstr "Route"
-
-msgid "Change Name"
-msgstr "Modifica nome"
-
-msgid "This changes the short name, visible on the right, of this Route"
-msgstr "Modifica il nome del route visibile nel menu a destra"
-
-msgid "Get DTMF input"
-msgstr "Cattura DTMF"
-
-msgid ""
-"If checked reads in DTMF digis, the value is available in the sql query with "
-"special name of [INPUT]."
-msgstr ""
-"Se selezionato cattura le cifre dtmf digitati. Il valore sarà disponibile "
-"nella query sql con il variable [INPUT]"
-
-msgid "Timeout"
-msgstr "Timeout"
-
-msgid "The amount of time (in seconds) to wait for input"
-msgstr "Tempo da rimanere in attesa di dtmf (secondi)"
-
-msgid "Input Variable"
-msgstr "Variable input"
-
-msgid ""
-"Optional variable name if you want the dmtf input to be available later in "
-"the call (e.g. futher dynamic route query or to pass to agi script)"
-msgstr ""
-"Nome opzionale del variable [INPUT] dove salvare il dtmf per uso successivo "
-"(es. Route dinamico successivo o script AGI)"
-
-msgid "Result Variable"
-msgstr "Variable del risultato"
-
-msgid ""
-"Optional variable name if you want the query result to be available later in "
-"the call (e.g. futher dynamic route query or to pass to agi script)"
-msgstr ""
-"Nome opzionale del variable dove salvare il risultato della query sql per "
-"uso successivo (es. Route dinamico successivo o script AGI)"
-
-msgid "Announcement"
-msgstr "Annuncio"
-
-msgid ""
-"Message to be played to the caller. To add additional recordings please use "
-"the \"Admin->System Recordings\" MENU above"
-msgstr ""
-"Messaggio da riprodurre. Per aggiungere registrazioni utilizza "
-"\"Admin_>System Recordings\"."
+msgid "Edit Dynamic Route: "
+msgstr "Modifica Dynamc Route"
 
 msgid "None"
 msgstr "Nessuno"
 
+msgid "Dynamic Route General Options"
+msgstr "Dynamic Route Opzioni Generali"
+
+msgid "Dynamic Route Name"
+msgstr "Nome del Dynamic Route"
+
+msgid "Name of this Dynamic Route"
+msgstr "Nome di questo Dynamic Route"
+
+msgid "Dynamic Route Description"
+msgstr "Descrizione"
+
+msgid "Description of this Dynamic Route"
+msgstr "Descrizione del Dynamic Route"
+
+msgid "Dynamic Route DTMF Options"
+msgstr "Dynamic Route Opzioni DTMF"
+
+msgid "Enable DTMF Input"
+msgstr "Abilita cattura DTMF"
+
+msgid "Yes"
+msgstr "Si"
+
+msgid "No"
+msgstr "No"
+
+msgid "Allows input of DTMF"
+msgstr "Consente l'input di DTMF"
+
+msgid "Announcement"
+msgstr "Registrazione"
+
+msgid "Greeting to be played on entry to the Dynamic Route."
+msgstr "Registrazione da riprodurre all'inizio del Dynamic Route"
+
+msgid "Timeout"
+msgstr "Timeout"
+
+msgid "Amount of time in seconds for dtmf timeout"
+msgstr "Tempo in secondi per aspettare input DTMF"
+
+msgid "Validation"
+msgstr "Validazione"
+
 msgid ""
-"Message to be played to the caller.<br><br>You must install and enable the "
-"\"Systems Recordings\" Module to edit this option"
+"Validation rules using a Asterisk regular expression (see Asterisk "
+"REGEX_MATCH). For example to ensure the input is between 3 and 4 digits long "
+"you could use ^[0-9]\\{3,4\\}$"
 msgstr ""
-"Messaggio da riprodurre.<br><br>Devi installare e abilitare il modulo "
-"\"Systems Recordings\" (registrazioni di sistmea) per utilizzare questa "
-"opzione"
+"Regola di validazione con un'espressione REGEX_MATCH. Ad esempio per "
+"controllare se l'input è fra 3 e 4 cifre: ^[0-9]\\{3,4\\}$"
 
-msgid "Validation Regex"
-msgstr "Validazione (espressione regex)"
+msgid "Invalid Retries"
+msgstr "Tentativi"
 
-msgid ""
-"Optional validation Regex expression to pass to Asterisk REGEX function to "
-"check input validity. If input is not valid, then the Invalid Retry "
-"Recording will be played for a maximum number of retries after which the "
-"call will be sent to Invalid destination after playing Invalid Recording"
-msgstr ""
-"Espressione regex per controllo validità input dtmf. Il valore sarà "
-"utilizzato come parametro alla funzione asterisk REGEX. Se l'input non è "
-"valido, sarà riprodotto la \"Annuncio Input invalido - Riprova\" per un "
-"numero massimo di \"Numero tentativi\" dopo di che la chiamata sarà "
-"instradata alla destinazione \"Invalido\" (dopo la riproduzione della "
-"\"Annuncio Input invalido\")"
-
-msgid "Retries"
-msgstr "Numero tentativi"
-
-msgid "The maximum number of retries. If set to 0 there will be no retry."
-msgstr ""
-"Numero massimo di tentativi per l'input dtmf. Se 0 la chiamata passa "
-"dall'input dtmf solo la prima volta."
+msgid "Number of times to retry when dtmf does not match validation rules"
+msgstr "Numero di tentativi"
 
 msgid "Invalid Retry Recording"
-msgstr "Annuncio Input Invalido - Riprova"
+msgstr "Registrazione per ripetere su invalido"
 
 msgid ""
-"Optional message to be played to the caller if validation fails. To add "
-"additional recordings please use the \"Admin->System Recordings\" MENU above"
-msgstr ""
-"Messaggio da riprodurre se la validazione fallisce. Per aggiungere "
-"registrazioni utilizza il menu \"Admin->System Recordings\""
-
-msgid ""
-"Optional message to be played to the caller if validation fails.<br><br>You "
-"must install and enable the \"Systems Recordings\" Module to edit this option"
-msgstr ""
-"Messaggio da riprodurre se la validazione fallisce. <br><br>Devi installare "
-"e attivare il modulo \"Systems Recordings\" per utilizzare questa opzione."
+"Prompt to be played if dtmf does not match validation rules and maximum "
+"retries has not been reached"
+msgstr "Registrazione per ripetere su invalido"
 
 msgid "Invalid Recording"
-msgstr "Annuncio Input Invalido"
+msgstr "Registrazione per invalido"
 
 msgid ""
-"Optional message to be played to the caller if validation fails for last "
-"time. To add additional recordings please use the \"Admin->System Recordings"
-"\" MENU above"
-msgstr ""
-"Messaggio da riprodurre se la validazione fallisce per l'ultima volta. Per "
-"aggiungere registrazioni utilizza il menu \"Admin->System Recordings\""
-
-msgid ""
-"Optional message to be played to the caller if validation fails for last "
-"time.<br><br>You must install and enable the \"Systems Recordings\" Module "
-"to edit this option"
-msgstr ""
-"Messaggio da riprodurre se la validazione fallisce per l'ultima volta. "
-"<br><br>Devi installare e attivare il modulo \"Systems Recordings\" per "
-"utilizzare questa opzione."
+"Prompt to be played when a timeout occurs, before prompting the caller to "
+"try again"
+msgstr "Registrazione per input invalido"
 
 msgid "Invalid Destination"
 msgstr "Destinazione invalida"
 
 msgid ""
-"Destination if validation fails for last time. If not set call will be sent "
-"to default destination."
-msgstr ""
-"Destinazione se la validazione fallisce all'ultimo tentativo. Se non "
-"impostato, la chiamata sarà instradata alla destinazione di default."
+"Destination to send the call to if the dtmf did not match the validation "
+"rule and maximum retries has been reached"
+msgstr "Destinazione per input invalid dopo max tenativi"
 
-msgid "Source type"
-msgstr "Sorgente"
+msgid "Dynamic Route Saved Variables"
+msgstr "Dynamic Route Variabli"
 
-msgid ""
-"Select the source type from which to obtain the routing information, you can "
-"choose between:<ul><li>MySQL to query a MySQL database</li><li>ODBC to query "
-"an ODBC data source</li><li>URL to query a web service. NB must return only "
-"text string, no XML or HTML.</li><li>Asterisk AGI script - there is an "
-"example provided in the module download</li><li>Asterisk variable or "
-"expression. NB the text is used as is in the dialplan without escaping.</"
-"li></ul>"
-msgstr ""
-"Seleziona il tipo di sorgente da cui ottenere le info per l'instradamento "
-"delle chiamate. Puoi scegliere fra: <ul><li>MySQL database</li><li>ODBC data "
-"source</li><li>URL per richiamare un servizio web. Nota: deve ritornare solo "
-"una stringa di testo, no XML o HTML.</li><li>Asterisk AGI script - c'è un "
-"esempio fornito nel download</li><li>Variable o espressione Asterisk. Nota "
-"il valore è utilizzato nel dialplan senza l'escaping dei caratteri.</li></ul>"
-
-msgid "URL"
-msgstr "URL"
-
-msgid "The url that returns the result"
-msgstr "L'url che ritorna il risultato"
-
-msgid "Asterisk variable"
-msgstr "Variable Asterisk"
-
-msgid "Variable string"
-msgstr "Variable stringa"
-
-msgid "The string containing one or more asterisk variables"
-msgstr "La stringa contente uno o più variabili asterisk"
-
-msgid "AGI"
-msgstr "AGI"
-
-msgid "AGI script and parameters"
-msgstr "Script AGI e parametri"
+msgid "Saved input variable name"
+msgstr "Variabile per salvare input"
 
 msgid ""
-"Name of the AGI script. Optional parameters may be appended using the , as "
-"separator"
-msgstr ""
-"Nome dello script AGI. Parametri possono essere aggiunti utilizzando la "
-"virgola come separatore"
+"Name of variable in which to save dtmf input for future use in the dialplan "
+"or further dynamic routes. This is available as [xxx] in the query/lookup "
+"where xxx is the name of the variable you specify here. To use the variable "
+"in the dialplan (e.g. custom applicaitons) it is necessary to prefix it with "
+"DYNROUTE_ e.g. DYNROUTE_xxx"
+msgstr "Variabile per salvare input"
 
-msgid "AGI result variable"
-msgstr "Variable Risultato AGI"
-
-msgid ""
-"The name of the variable in the script which must be set with the result. "
-"See test.agi for an example."
-msgstr ""
-"Il nome del variabile che lo script imposta con il risultato. Vedi test.agi "
-"per un esempio."
-
-msgid "ODBC"
-msgstr "ODBC"
-
-msgid "Function"
-msgstr "Funzione"
+msgid "Saved result variable name"
+msgstr "Variabile per salvare risultato"
 
 msgid ""
-"Name of the odbc function (excluding ODBC prefix) in /etc/asterisk/func_odbc."
-"conf"
+"Name of variable in which to save lookup result for future use in the "
+"dialplan or further dynamic routes. This is available as [xxx] in the query/"
+"lookup where xxx is the name of the variable you specify here. To use the "
+"variable in the dialplan (e.g. custom applicaitons) it is necessary to "
+"prefix it with DYNROUTE_ e.g. DYNROUTE_xxx"
+msgstr "Variabile per salvare risultato"
+
+msgid "Dynamic Route Lookup Source"
+msgstr "Dynamic Route Sorgente"
+
+msgid "Source Type"
+msgstr "Tipo sorgente"
+
+msgid "The source of the information to be looked up."
+msgstr "Sorgente delle info."
+
+msgid "MySQL hostname"
 msgstr ""
-"Nome della funzione ODBC (escluso il prefisso ODBC) dal file /etc/asterisk/"
-"func_obd.conf"
 
-msgid "Query"
-msgstr "Query"
+msgid "Hostname of MySQL server"
+msgstr ""
 
-msgid "The query which gets the result out of the database"
-msgstr "La query da inviare al database"
+msgid "MySQL database"
+msgstr ""
 
-msgid "MySQL"
-msgstr "MySQL"
+msgid "Database to connect to on MySQL server"
+msgstr ""
 
-msgid "Host"
-msgstr "Host"
+msgid "MySQL username"
+msgstr ""
 
-msgid "Hostname or IP address of the server running the MySQL database"
-msgstr "Nome host o indirizzo ip del server MySQL"
+msgid "Username to use for connection to MySQL server"
+msgstr ""
 
-msgid "Database"
-msgstr "Database"
+msgid "MySQL password"
+msgstr ""
 
-msgid "The name of the database out of wich the information is being queried"
-msgstr "Il nome del database"
+msgid "Password to use for connection to MySQL server"
+msgstr ""
 
-msgid "Username"
-msgstr "Utente"
+msgid "MySQL query"
+msgstr ""
 
-msgid "The user/login name for accessing the database"
-msgstr "Nome utente per colelgarsi al server database"
+msgid ""
+"Query to use to obtain the result from the MySQL database. The following "
+"substitutions are available:<br>[NUMBER] the callerid number<br>[INPUT] the "
+"dtmf sequence input<br>[DID] the dialed number<br>[xxx] where xxx is the "
+"name of an input or result variable saved from a previous dynamic route on "
+"the same call"
+msgstr ""
 
-msgid "Password"
-msgstr "Password"
+msgid "ODBC Function"
+msgstr ""
 
-msgid "The password wich is needed to access the database"
-msgstr "Password di accesso al server database"
+msgid ""
+"ODBC Function to use. The value used here should be the name of a section "
+"in /etc/asterisk/func_odbc.conf. If checking whether the function is "
+"registered at the asterisk console with \"core show functions \" it has an "
+"ODBC_ prepended. "
+msgstr ""
 
-msgid "The query wich gets the result out of the database"
-msgstr "La query da inviare al database"
+msgid "ODBC query"
+msgstr ""
 
-msgid "Increase Destinations"
-msgstr "Più destinazioni"
+msgid ""
+"Query to use to obtain the result from the database. The following "
+"substitutions are available:<br>[NUMBER] the callerid number<br>[INPUT] the "
+"dtmf sequence input<br>[DID] the dialed number<br>[xxx] where xxx is the "
+"name of an input or result variable saved from a previous dynamic route on "
+"the same call"
+msgstr ""
 
-msgid "Save"
-msgstr "Salva"
+msgid "URL Lookup"
+msgstr ""
 
-msgid "Decrease Destinations"
-msgstr "Meno Destinazioni"
+msgid ""
+"URL to use to obtain the result (it must return text only, no html, xml or "
+"json. Exmaple http://localhost/test.php?param1=4&param2=9 The following "
+"substitutions are available:<br>[NUMBER] the callerid number<br>[INPUT] the "
+"dtmf sequence input<br>[DID] the dialed number<br>[xxx] where xxx is the "
+"name of an input or result variable saved from a previous dynamic route on "
+"the same call"
+msgstr ""
 
-msgid "Match"
-msgstr "Valore trovato"
+msgid "AGI Lookup"
+msgstr ""
+
+msgid ""
+"AGI to use to obtain the result (it must return text only, no html, xml or "
+"json. For example test.agi,param1,param2 The following substitutions are "
+"available for use in the input parameters:<br>[NUMBER] the callerid "
+"number<br>[INPUT] the dtmf sequence input<br>[DID] the dialed "
+"number<br>[xxx] where xxx is the name of an input or result variable saved "
+"from a previous dynamic route on the same call"
+msgstr ""
+
+msgid "AGI Result Variable"
+msgstr ""
+
+msgid "Name of result variable used in AGI script."
+msgstr ""
+
+msgid "Asterisk Variable"
+msgstr ""
+
+msgid ""
+"Asterisk variable whose value is to be used. The following substitutions are "
+"available:<br>[NUMBER] the callerid number<br>[INPUT] the dtmf sequence "
+"input<br>[DID] the dialed number<br>[xxx] where xxx is the name of an input "
+"or result variable saved from a previous dynamic route on the same call"
+msgstr ""
+
+msgid "Dynamic Route Default Entry"
+msgstr "Dynamic Route Destination di Default"
+
+msgid "Default Destination"
+msgstr "Destinazione di default"
+
+msgid ""
+"Destination to send the call to if there is no match in the Dynamic Route "
+"Entries section below or if the lookup fails."
+msgstr ""
+
+msgid "Dynamic Route Entries"
+msgstr "Dynamic Route Destinazioni"
+
+msgid "Dynamic Route"
+msgstr "Dynamic Route"
+
+msgid "Delete"
+msgstr "Elimina"
+
+msgid "Reset"
+msgstr "Reimposta"
+
+msgid "Submit"
+msgstr "Invio"
+
+msgid "No Astman, Not loading Dynroute"
+msgstr "Astman non disponibile, Dynroute non caricato"
+
+msgid "Connection Error"
+msgstr "Errore di connessione"
+
+msgid ""
+"A connection to Asterisk Manager could not be made. This module requires "
+"Asterisk to be running and have proper credentials"
+msgstr ""
+"Non è possibile connettere a Asterisk Manager. Asterisk deve essere attivo e "
+"le credenziali di accesso valide"
+
+msgid "Dyname Route Name"
+msgstr "Nome del Dynamic Route"
+
+msgid "Actions"
+msgstr "Azioni"
+
+msgid "Ext"
+msgstr "Match"
 
 msgid "Destination"
 msgstr "Destinazione"
 
-msgid "Default destination"
-msgstr "Destinazione di default"
+#, php-format
+msgid "Dynamic Route: %s / Option: %s"
+msgstr "Dynamic Route: %s / Option: %s"
 
-msgid "Invalid destination"
-msgstr "Destinazione invalida"
+#, php-format
+msgid "Dynamic Route: %s"
+msgstr "Dynamic Route: %s"
 
-msgid "Leave blank to remove"
-msgstr "Lascia vuoto per eliminare"
+#~ msgid "There is a problem with installation Contact support\n"
+#~ msgstr "L'installazione è fallita. Contatta l'amministratore del sistema\n"
+
+#~ msgid "Route: %s"
+#~ msgstr "Route: %s"
+
+#~ msgid "Dynamic route: %s"
+#~ msgstr "Route dinamico: %s"
+
+#~ msgid "Route: %s / Destination: %s"
+#~ msgstr "Route: %s / Destinazione: %s"
+
+#~ msgid "Dynamic Routing"
+#~ msgstr "Instradamento dinamico"
+
+#~ msgid "Instructions"
+#~ msgstr "Istruzioni"
+
+#~ msgid ""
+#~ "You use the Dynamic Routing module to route calls based on the info "
+#~ "returned from an sql lookup via mysql or odbc, from an agi script, web "
+#~ "service or the value of an asterisk variable."
+#~ msgstr ""
+#~ "Il modulo Dynamic Routes può essere utilizzato per instradare le chiamate "
+#~ "basate sulle info da una query sql (mysql o odbc), da uno script AGI, "
+#~ "servizio web o da un variable asterisk"
+
+#~ msgid "For configuration instructions see"
+#~ msgstr "Per istruzioni sulla configurazione:"
+
+#~ msgid "Add Route"
+#~ msgstr "Aggiungi Route"
+
+#~ msgid "Edit Menu"
+#~ msgstr "Modifica"
+
+#~ msgid "Route"
+#~ msgstr "Route"
+
+#~ msgid "Change Name"
+#~ msgstr "Modifica nome"
+
+#~ msgid "This changes the short name, visible on the right, of this Route"
+#~ msgstr "Modifica il nome del route visibile nel menu a destra"
+
+#~ msgid "Get DTMF input"
+#~ msgstr "Cattura DTMF"
+
+#~ msgid ""
+#~ "If checked reads in DTMF digis, the value is available in the sql query "
+#~ "with special name of [INPUT]."
+#~ msgstr ""
+#~ "Se selezionato cattura le cifre dtmf digitati. Il valore sarà disponibile "
+#~ "nella query sql con il variable [INPUT]"
+
+#~ msgid "The amount of time (in seconds) to wait for input"
+#~ msgstr "Tempo da rimanere in attesa di dtmf (secondi)"
+
+#~ msgid "Input Variable"
+#~ msgstr "Variable input"
+
+#~ msgid ""
+#~ "Optional variable name if you want the dmtf input to be available later "
+#~ "in the call (e.g. futher dynamic route query or to pass to agi script)"
+#~ msgstr ""
+#~ "Nome opzionale del variable [INPUT] dove salvare il dtmf per uso "
+#~ "successivo (es. Route dinamico successivo o script AGI)"
+
+#~ msgid "Result Variable"
+#~ msgstr "Variable del risultato"
+
+#~ msgid ""
+#~ "Optional variable name if you want the query result to be available later "
+#~ "in the call (e.g. futher dynamic route query or to pass to agi script)"
+#~ msgstr ""
+#~ "Nome opzionale del variable dove salvare il risultato della query sql per "
+#~ "uso successivo (es. Route dinamico successivo o script AGI)"
+
+#~ msgid ""
+#~ "Message to be played to the caller. To add additional recordings please "
+#~ "use the \"Admin->System Recordings\" MENU above"
+#~ msgstr ""
+#~ "Messaggio da riprodurre. Per aggiungere registrazioni utilizza "
+#~ "\"Admin_>System Recordings\"."
+
+#~ msgid ""
+#~ "Message to be played to the caller.<br><br>You must install and enable "
+#~ "the \"Systems Recordings\" Module to edit this option"
+#~ msgstr ""
+#~ "Messaggio da riprodurre.<br><br>Devi installare e abilitare il modulo "
+#~ "\"Systems Recordings\" (registrazioni di sistmea) per utilizzare questa "
+#~ "opzione"
+
+#~ msgid "Validation Regex"
+#~ msgstr "Validazione (espressione regex)"
+
+#~ msgid ""
+#~ "Optional validation Regex expression to pass to Asterisk REGEX function "
+#~ "to check input validity. If input is not valid, then the Invalid Retry "
+#~ "Recording will be played for a maximum number of retries after which the "
+#~ "call will be sent to Invalid destination after playing Invalid Recording"
+#~ msgstr ""
+#~ "Espressione regex per controllo validità input dtmf. Il valore sarà "
+#~ "utilizzato come parametro alla funzione asterisk REGEX. Se l'input non è "
+#~ "valido, sarà riprodotto la \"Annuncio Input invalido - Riprova\" per un "
+#~ "numero massimo di \"Numero tentativi\" dopo di che la chiamata sarà "
+#~ "instradata alla destinazione \"Invalido\" (dopo la riproduzione della "
+#~ "\"Annuncio Input invalido\")"
+
+#~ msgid "Retries"
+#~ msgstr "Numero tentativi"
+
+#~ msgid "The maximum number of retries. If set to 0 there will be no retry."
+#~ msgstr ""
+#~ "Numero massimo di tentativi per l'input dtmf. Se 0 la chiamata passa "
+#~ "dall'input dtmf solo la prima volta."
+
+#~ msgid ""
+#~ "Optional message to be played to the caller if validation fails. To add "
+#~ "additional recordings please use the \"Admin->System Recordings\" MENU "
+#~ "above"
+#~ msgstr ""
+#~ "Messaggio da riprodurre se la validazione fallisce. Per aggiungere "
+#~ "registrazioni utilizza il menu \"Admin->System Recordings\""
+
+#~ msgid ""
+#~ "Optional message to be played to the caller if validation fails."
+#~ "<br><br>You must install and enable the \"Systems Recordings\" Module to "
+#~ "edit this option"
+#~ msgstr ""
+#~ "Messaggio da riprodurre se la validazione fallisce. <br><br>Devi "
+#~ "installare e attivare il modulo \"Systems Recordings\" per utilizzare "
+#~ "questa opzione."
+
+#~ msgid ""
+#~ "Optional message to be played to the caller if validation fails for last "
+#~ "time. To add additional recordings please use the \"Admin->System "
+#~ "Recordings\" MENU above"
+#~ msgstr ""
+#~ "Messaggio da riprodurre se la validazione fallisce per l'ultima volta. "
+#~ "Per aggiungere registrazioni utilizza il menu \"Admin->System Recordings\""
+
+#~ msgid ""
+#~ "Optional message to be played to the caller if validation fails for last "
+#~ "time.<br><br>You must install and enable the \"Systems Recordings\" "
+#~ "Module to edit this option"
+#~ msgstr ""
+#~ "Messaggio da riprodurre se la validazione fallisce per l'ultima volta. "
+#~ "<br><br>Devi installare e attivare il modulo \"Systems Recordings\" per "
+#~ "utilizzare questa opzione."
+
+#~ msgid ""
+#~ "Destination if validation fails for last time. If not set call will be "
+#~ "sent to default destination."
+#~ msgstr ""
+#~ "Destinazione se la validazione fallisce all'ultimo tentativo. Se non "
+#~ "impostato, la chiamata sarà instradata alla destinazione di default."
+
+#~ msgid "Source type"
+#~ msgstr "Sorgente"
+
+#~ msgid ""
+#~ "Select the source type from which to obtain the routing information, you "
+#~ "can choose between:<ul><li>MySQL to query a MySQL database</li><li>ODBC "
+#~ "to query an ODBC data source</li><li>URL to query a web service. NB must "
+#~ "return only text string, no XML or HTML.</li><li>Asterisk AGI script - "
+#~ "there is an example provided in the module download</li><li>Asterisk "
+#~ "variable or expression. NB the text is used as is in the dialplan without "
+#~ "escaping.</li></ul>"
+#~ msgstr ""
+#~ "Seleziona il tipo di sorgente da cui ottenere le info per l'instradamento "
+#~ "delle chiamate. Puoi scegliere fra: <ul><li>MySQL database</li><li>ODBC "
+#~ "data source</li><li>URL per richiamare un servizio web. Nota: deve "
+#~ "ritornare solo una stringa di testo, no XML o HTML.</li><li>Asterisk AGI "
+#~ "script - c'è un esempio fornito nel download</li><li>Variable o "
+#~ "espressione Asterisk. Nota il valore è utilizzato nel dialplan senza "
+#~ "l'escaping dei caratteri.</li></ul>"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "The url that returns the result"
+#~ msgstr "L'url che ritorna il risultato"
+
+#~ msgid "Asterisk variable"
+#~ msgstr "Variable Asterisk"
+
+#~ msgid "Variable string"
+#~ msgstr "Variable stringa"
+
+#~ msgid "The string containing one or more asterisk variables"
+#~ msgstr "La stringa contente uno o più variabili asterisk"
+
+#~ msgid "AGI"
+#~ msgstr "AGI"
+
+#~ msgid "AGI script and parameters"
+#~ msgstr "Script AGI e parametri"
+
+#~ msgid ""
+#~ "Name of the AGI script. Optional parameters may be appended using the , "
+#~ "as separator"
+#~ msgstr ""
+#~ "Nome dello script AGI. Parametri possono essere aggiunti utilizzando la "
+#~ "virgola come separatore"
+
+#~ msgid "AGI result variable"
+#~ msgstr "Variable Risultato AGI"
+
+#~ msgid ""
+#~ "The name of the variable in the script which must be set with the result. "
+#~ "See test.agi for an example."
+#~ msgstr ""
+#~ "Il nome del variabile che lo script imposta con il risultato. Vedi test."
+#~ "agi per un esempio."
+
+#~ msgid "ODBC"
+#~ msgstr "ODBC"
+
+#~ msgid "Function"
+#~ msgstr "Funzione"
+
+#~ msgid ""
+#~ "Name of the odbc function (excluding ODBC prefix) in /etc/asterisk/"
+#~ "func_odbc.conf"
+#~ msgstr ""
+#~ "Nome della funzione ODBC (escluso il prefisso ODBC) dal file /etc/"
+#~ "asterisk/func_obd.conf"
+
+#~ msgid "Query"
+#~ msgstr "Query"
+
+#~ msgid "The query which gets the result out of the database"
+#~ msgstr "La query da inviare al database"
+
+#~ msgid "MySQL"
+#~ msgstr "MySQL"
+
+#~ msgid "Host"
+#~ msgstr "Host"
+
+#~ msgid "Hostname or IP address of the server running the MySQL database"
+#~ msgstr "Nome host o indirizzo ip del server MySQL"
+
+#~ msgid "Database"
+#~ msgstr "Database"
+
+#~ msgid ""
+#~ "The name of the database out of wich the information is being queried"
+#~ msgstr "Il nome del database"
+
+#~ msgid "Username"
+#~ msgstr "Utente"
+
+#~ msgid "The user/login name for accessing the database"
+#~ msgstr "Nome utente per colelgarsi al server database"
+
+#~ msgid "Password"
+#~ msgstr "Password"
+
+#~ msgid "The password wich is needed to access the database"
+#~ msgstr "Password di accesso al server database"
+
+#~ msgid "The query wich gets the result out of the database"
+#~ msgstr "La query da inviare al database"
+
+#~ msgid "Increase Destinations"
+#~ msgstr "Più destinazioni"
+
+#~ msgid "Save"
+#~ msgstr "Salva"
+
+#~ msgid "Decrease Destinations"
+#~ msgstr "Meno Destinazioni"
+
+#~ msgid "Match"
+#~ msgstr "Valore trovato"
+
+#~ msgid "Default destination"
+#~ msgstr "Destinazione di default"
+
+#~ msgid "Invalid destination"
+#~ msgstr "Destinazione invalida"
+
+#~ msgid "Leave blank to remove"
+#~ msgstr "Lascia vuoto per eliminare"
 
 #~ msgid ""
 #~ "You use the Dynamic Routing module to route calls based on sql lookup."

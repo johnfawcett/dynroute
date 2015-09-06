@@ -88,7 +88,6 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 			$sql = "ALTER TABLE dynroute ADD COLUMN `default_dest` VARCHAR(255);";
 			$sth = $this->db->prepare($sql);
 			$sth->execute();
-			return;
 		}
 
 		try{
@@ -99,7 +98,6 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 			$sql = "ALTER TABLE dynroute ADD COLUMN `description` TEXT;";
 			$sth = $this->db->prepare($sql);
 			$sth->execute();
-			return;
 		}
 
 		try{
@@ -110,7 +108,6 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 			$sql = "ALTER TABLE dynroute CHANGE COLUMN `dynroute_id` `id` INT(11) AUTO_INCREMENT NOT NULL;";
 			$sth = $this->db->prepare($sql);
 			$sth->execute();
-			return;
 		}
 
 		try{
@@ -121,7 +118,6 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 			$sql = "ALTER TABLE dynroute CHANGE COLUMN `displayname` `name` VARCHAR(255);";
 			$sth = $this->db->prepare($sql);
 			$sth->execute();
-			return;
 		}
 
 // rewrite default_dest data

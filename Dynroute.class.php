@@ -212,7 +212,7 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 		}
 
 		try{
-			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'agi_var_name'";
+			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'agi_var_name_res'";
 			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
 			if (empty($results)) {
 				$sql = "ALTER TABLE dynroute ADD COLUMN `agi_var_name_res` VARCHAR(255);";

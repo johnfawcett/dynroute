@@ -152,7 +152,7 @@ function dynroute_show_edit($id, $nbroptions, $post) {
 
         if(function_exists('recordings_list')) { //only include if recordings is enabled ?>
                 <tr>
-                        <td><a href="#" class="info"><?php echo _("Announcement")?><span><?php echo _("Message to be played to the caller. To add additional recordings please use the \"Admin->System Recordings\" MENU above")?></span></a></td>
+                        <td><a href="#" class="info"><?php echo _("Announcement")?><span><?php echo _("Message to be played to the caller. To add additional recordings please use the \"Admin->System Recordings\" Menu above")?></span></a></td>
                         <td>
                                 <select name="annmsg_id" tabindex="<?php echo ++$tabindex;?>">
                                 <?php
@@ -185,7 +185,7 @@ function dynroute_show_edit($id, $nbroptions, $post) {
 ?>
 
                 <tr>
-                        <td><a href="#" class="info"><?php echo _("Validation Regex");?><span><?php echo _("Optional validation Regex expression to pass to Asterisk REGEX function to check input validity. If input is not valid, then the Invalid Retry Recording will be played for a maximum number of retries after which the call will be sent to Invalid destination after playing Invalid Recording");?></span></a></td>
+                        <td><a href="#" class="info"><?php echo _("Validation Regex");?><span><?php echo _("Optional validation Regex expression to pass to Asterisk REGEX function to check input validity. If input is not valid, then the Invalid Retry Recording will be played for a maximum number of retries after which the call will be sent to Invalid destination after playing Invalid Recording. For example to check the length of input is between 3 and 5 digits use the following regex escaping the curly braces: ^[0-9]\{3,5\}$");?></span></a></td>
                         <td><input type="text" name="validation_regex" value="<?php echo $dynroute_details['validation_regex'] ?>" tabindex="<?php echo ++$tabindex;?>"></td>
                 </tr>
 
@@ -199,7 +199,7 @@ function dynroute_show_edit($id, $nbroptions, $post) {
 
         if(function_exists('recordings_list')) { //only include if recordings is enabled ?>
                 <tr>
-                        <td><a href="#" class="info"><?php echo _("Invalid Retry Recording")?><span><?php echo _("Optional message to be played to the caller if validation fails. To add additional recordings please use the \"Admin->System Recordings\" MENU above")?></span></a></td>
+                        <td><a href="#" class="info"><?php echo _("Invalid Retry Recording")?><span><?php echo _("Optional message to be played to the caller if validation fails. To add additional recordings please use the \"Admin->System Recordings\" Menu above")?></span></a></td>
                         <td>
                                 <select name="invalid_retry_rec_id" tabindex="<?php echo ++$tabindex;?>">
                                 <?php
@@ -236,7 +236,7 @@ function dynroute_show_edit($id, $nbroptions, $post) {
 
         if(function_exists('recordings_list')) { //only include if recordings is enabled ?>
                 <tr>
-                        <td><a href="#" class="info"><?php echo _("Invalid Recording")?><span><?php echo _("Optional message to be played to the caller if validation fails for last time. To add additional recordings please use the \"Admin->System Recordings\" MENU above")?></span></a></td>
+                        <td><a href="#" class="info"><?php echo _("Invalid Recording")?><span><?php echo _("Optional message to be played to the caller if validation fails for last time. To add additional recordings please use the \"Admin->System Recordings\" Menu above")?></span></a></td>
                         <td>
                                 <select name="invalid_rec_id" tabindex="<?php echo ++$tabindex;?>">
                                 <?php

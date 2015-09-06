@@ -1,16 +1,19 @@
 <module>
 	<rawname>dynroute</rawname>
-	<name>Dynamic Routes</name>
-	<version>2.11.4.0</version>
-	<publisher>FreePBX</publisher>
+	<repo>standard</repo>
+	<name>Dynamic Route</name>
+	<version>13.0.0</version>
+	<publisher>John Fawcett</publisher>
 	<license>GPLv3+</license>
-	<type>setup</type>
-	<category>Third Party Addon</category>
+	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
+	<category>Applications</category>
 	<description>
-		Allows to route call based on lookup in sql database and/or user input and to store results in channel variables
+		Routes calls based on dynamically calculated information that can be taken from a mysql database or via odbc with any supported database, from asterisk variables, from a url or an agi script.
+ 		Parameters to the lookups can combine dtmf input, asterisk variables, or values saved from previously executed dynamic routes on the same call.
 	</description>
 	<changelog>
 		See CHANGES.txt file in module directory for full details.
+		*13.0.0* First release for Freepbx 13
 		*2.11.4.0* Validation capability, bug fix
 		*2.11.3.2* Bug fix
 		*2.11.3.1* Bug fix
@@ -26,18 +29,22 @@
 		*2.6.0.2* First Release
 	</changelog>
 	<depends>
-		<version>ge2.11</version>
-		<module></module>
+		<version>13.0.0</version>
+		<module>recordings</module>
 	</depends>
 	<menuitems>
 		<dynroute>Dynamic Routes</dynroute>
 	</menuitems>
-        <popovers>
-                <dynroute>
-                        <display>dynroute</display>
+	<popovers>
+		<dynroute>
+			<display>dynroute</display>
 			<action>add</action>
-                </dynroute>
-        </popovers>
-	<location>contributed_modules/release/dynroute-2.11.4.0.tgz</location>
-	<md5sum>045d0cf1961d0287d63d45a2593637ea</md5sum>
+			<view>form</view>
+		</dynroute>
+ 	</popovers>
+ 	<supported>
+ 		<version>13.0</version>
+ 	</supported>
+	<location>release/13/dynroute-13.0.tgz</location>
+	<md5sum>57d8316dc41fcd3153cefd00a5e3bdd5</md5sum>
 </module>

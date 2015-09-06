@@ -1,5 +1,7 @@
 #!/usr/bin/php -q
 <?php
+// Copyright (c) 2015 John Fawcett
+// This is a dervied work licenced under GPL V3 or later
    
 GLOBAL $stdin, $stdout, $stdlog, $parm_debug_on;
    

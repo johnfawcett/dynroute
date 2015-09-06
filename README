@@ -1,4 +1,3 @@
-<?php
 //    dynroute - Dynamic Route Module for Freepbx
 //    Copyright (C) 2009-2015 John Fawcett john@voipsupport.it
 //
@@ -15,8 +14,12 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+//    The source code for dynroute is a derived work of the freepbx ivr 
+//    and calleridlookup modules in September 2009 both of which were
+//    licensed under GPL V.3
 
-if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
+//    The source code was updated in September 2015 for Freepbx 13 reusing
+//    the updated ivr module as a basis and with reference to the code 
+//    examples from https://github.com/jfinstrom/helloworld licensed under
+//    AGPL.
 
-sql('DROP TABLE IF EXISTS dynroute');
-sql('DROP TABLE IF EXISTS dynroute_dests');

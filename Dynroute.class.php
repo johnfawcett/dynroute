@@ -363,18 +363,15 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 				$c = count($results);
 				echo _("There are $c default destinations in dynroute_dests to migrate<br>");
 				$sql = "UPDATE dynroute d SET default_dest=(SELECT dest FROM dynroute_dests dd WHERE dd.dynroute_id = d.id AND dd.default_dest='y')";
-				$sth = $this->db->prepare($sql);
-				$sth->execute();
-				$num_rows = $this->db->affectedRows();
+				$sth = $this->db->query($sql);
+				$num_rows = $sth->rowCount();
 				echo _("Updated dynroute.default_dest with $num_rows destinations from dynroute_dests<br>");
 				if ($num_rows < $c) { 
 					echo _("Less destinations than expected were migrated. Aborting without deleting source table");
-					die_freepbx($res->getDebugInfo());
 				} else {
 					$sql = "DELETE FROM dynroute_dests WHERE default_dest='y'";
-					$sth = $this->db->prepare($sql);
-					$sth->execute();
-					$num_rows = $this->db->affectedRows();
+					$sth = $this->db->query($sql);
+					$num_rows2 = $sth->rowCount();
 					echo _("$num_rows2 unneeded rows deleted from dynroute_dests<br>");
 					$sql = "ALTER TABLE dynroute_dests DROP COLUMN default_dest";
 					$sth = $this->db->prepare($sql);

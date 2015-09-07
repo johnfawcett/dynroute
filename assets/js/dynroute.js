@@ -121,13 +121,7 @@ function actionFormatter(value){
 	return html;
 }
 function bnavFormatter(value){
-	var html = '<a href="?display=dynroute&action=edit&id='+value[0]+'"><i class="fa fa-pencil"></i>&nbsp;'+_("Edit:")+'&nbsp;'+stripslashes(value[1])+'</a>';
+	var html = '<a href="?display=dynroute&action=edit&id='+value[0]+'"><i class="fa fa-pencil"></i>&nbsp;'+_("Edit:")+'&nbsp;'+value[1]+'</a>';
 	return html;
 }
-function stripslashes(str) {
-str=str.replace(/\\'/g,'\'');
-str=str.replace(/\\"/g,'"');
-str=str.replace(/\\0/g,'\0');
-str=str.replace(/\\\\/g,'\\');
-return str;
-}
+

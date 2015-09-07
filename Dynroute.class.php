@@ -384,11 +384,6 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 				return $e->getMessage();
 		}
 
-
-// check about escaping
-
-
-
 		return;
 	}
 
@@ -429,7 +424,7 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 		$dynroutes = $this->getDetails();
 		foreach ($dynroutes as $dynroute) {
 			$results[] = array(
-				"text" => _("Dynamic Route").": ".stripslashes($dynroute['name']),
+				"text" => _("Dynamic Route").": ".$dynroute['name'],
 				"type" => "get",
 				"dest" => "?display=dynroute&action=edit&id=".$dynroute['id']
 			);
@@ -505,7 +500,7 @@ public function ajaxHandler(){
 					foreach ($dynroutes as $r) {
 						$r['name'] = $r['name'] ? $r['name'] : 'Dynamic Route ID: ' . $r['id'];
 						$ret[] = array(
-								'name' => stripslashes($r['name']),
+								'name' => $r['name'],
 								'id' => $r['id'],
 								'link' => array($r['id'],$r['name'])
 							);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX dynroute module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-06 17:39+0200\n"
+"POT-Creation-Date: 2015-09-07 23:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,46 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "Match"
+msgstr ""
+
+msgid "Destination"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+#, php-format
+msgid "Dynamic Route: %s / Option: %s"
+msgstr ""
+
+#, php-format
+msgid "Dynamic Route: %s"
+msgstr ""
+
+msgid "No Astman, Not loading Dynroute"
+msgstr ""
+
+msgid "Connection Error"
+msgstr ""
+
+msgid ""
+"A connection to Asterisk Manager could not be made. This module requires "
+"Asterisk to be running and have proper credentials"
+msgstr ""
+
+msgid "Dynamic Route"
+msgstr ""
+
+msgid "Add Dynamic Route"
+msgstr ""
+
+msgid "Dyname Route Name"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
 msgid "value to be matched"
 msgstr ""
 
@@ -24,9 +64,6 @@ msgid "Delete this entry. Dont forget to click Submit to save changes!"
 msgstr ""
 
 msgid "List Dynamc Routes"
-msgstr ""
-
-msgid "Add Dynamic Route"
 msgstr ""
 
 msgid "Dynamic Route List"
@@ -263,45 +300,16 @@ msgstr ""
 msgid "Dynamic Route Entries"
 msgstr ""
 
-msgid "Dynamic Route"
+msgid ""
+"Less destinations than expected were migrated. Aborting without deleting "
+"source table"
 msgstr ""
 
-msgid "Delete"
+msgid "No default destinations in dynroute_dests to migrate. Skipping...<br>"
 msgstr ""
 
 msgid "Reset"
 msgstr ""
 
 msgid "Submit"
-msgstr ""
-
-msgid "No Astman, Not loading Dynroute"
-msgstr ""
-
-msgid "Connection Error"
-msgstr ""
-
-msgid ""
-"A connection to Asterisk Manager could not be made. This module requires "
-"Asterisk to be running and have proper credentials"
-msgstr ""
-
-msgid "Dyname Route Name"
-msgstr ""
-
-msgid "Actions"
-msgstr ""
-
-msgid "Ext"
-msgstr ""
-
-msgid "Destination"
-msgstr ""
-
-#, php-format
-msgid "Dynamic Route: %s / Option: %s"
-msgstr ""
-
-#, php-format
-msgid "Dynamic Route: %s"
 msgstr ""

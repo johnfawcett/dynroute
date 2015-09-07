@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreePBX dynroute module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-06 17:43+0200\n"
-"PO-Revision-Date: 2015-09-06 17:58+0200\n"
+"POT-Creation-Date: 2015-09-07 23:38+0200\n"
+"PO-Revision-Date: 2015-09-07 23:43+0200\n"
 "Last-Translator: John Fawcett <john@voipsupport.it>\n"
 "Language-Team: John Fawcett <john@voipsupport.it>\n"
 "Language: it_IT\n"
@@ -19,6 +19,48 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
+msgid "Match"
+msgstr "Valore"
+
+msgid "Destination"
+msgstr "Destinazione"
+
+msgid "Delete"
+msgstr "Elimina"
+
+#, php-format
+msgid "Dynamic Route: %s / Option: %s"
+msgstr "Dynamic Route: %s / Option: %s"
+
+#, php-format
+msgid "Dynamic Route: %s"
+msgstr "Dynamic Route: %s"
+
+msgid "No Astman, Not loading Dynroute"
+msgstr "Astman non disponibile, Dynroute non caricato"
+
+msgid "Connection Error"
+msgstr "Errore di connessione"
+
+msgid ""
+"A connection to Asterisk Manager could not be made. This module requires "
+"Asterisk to be running and have proper credentials"
+msgstr ""
+"Non è possibile connettere a Asterisk Manager. Asterisk deve essere attivo e "
+"le credenziali di accesso valide"
+
+msgid "Dynamic Route"
+msgstr "Dynamic Route"
+
+msgid "Add Dynamic Route"
+msgstr "Aggiungi Dynamic Route"
+
+msgid "Dyname Route Name"
+msgstr "Nome del Dynamic Route"
+
+msgid "Actions"
+msgstr "Azioni"
+
 msgid "value to be matched"
 msgstr "valore da confrontare"
 
@@ -27,9 +69,6 @@ msgstr "Cancella. Ricorda di salvare la modifica."
 
 msgid "List Dynamc Routes"
 msgstr "Elenco Dynamic Routes"
-
-msgid "Add Dynamic Route"
-msgstr "Aggiungi Dynamic Route"
 
 msgid "Dynamic Route List"
 msgstr "Elenco Dynamic Routes"
@@ -158,31 +197,31 @@ msgid "The source of the information to be looked up."
 msgstr "Sorgente delle info."
 
 msgid "MySQL hostname"
-msgstr ""
+msgstr "MySQL hostname"
 
 msgid "Hostname of MySQL server"
-msgstr ""
+msgstr "Nome host del server MySQl"
 
 msgid "MySQL database"
-msgstr ""
+msgstr "MySQL database"
 
 msgid "Database to connect to on MySQL server"
-msgstr ""
+msgstr "Nome database"
 
 msgid "MySQL username"
-msgstr ""
+msgstr "MySQL username"
 
 msgid "Username to use for connection to MySQL server"
-msgstr ""
+msgstr "Utente MySQL"
 
 msgid "MySQL password"
-msgstr ""
+msgstr "MySQL password"
 
 msgid "Password to use for connection to MySQL server"
-msgstr ""
+msgstr "Password MySQL"
 
 msgid "MySQL query"
-msgstr ""
+msgstr "MySQL query"
 
 msgid ""
 "Query to use to obtain the result from the MySQL database. The following "
@@ -191,9 +230,14 @@ msgid ""
 "name of an input or result variable saved from a previous dynamic route on "
 "the same call"
 msgstr ""
+"Query da eseguire per ottenere le info dal database MySQL. Si possono "
+"utilizzare queste sostituzioni<br>[NUMBER] callerid<br>[INPUT] dtmf<br>[DID] "
+"numero chiamato<br>[xxx] dove xxx è il nome di un variable di input o di "
+"risultato salvato da un precedente dynamic route utilizzato sulla stessa "
+"chiamata."
 
 msgid "ODBC Function"
-msgstr ""
+msgstr "ODBC Function"
 
 msgid ""
 "ODBC Function to use. The value used here should be the name of a section "
@@ -203,7 +247,7 @@ msgid ""
 msgstr ""
 
 msgid "ODBC query"
-msgstr ""
+msgstr "ODBC query"
 
 msgid ""
 "Query to use to obtain the result from the database. The following "
@@ -214,7 +258,7 @@ msgid ""
 msgstr ""
 
 msgid "URL Lookup"
-msgstr ""
+msgstr "URL Lookup"
 
 msgid ""
 "URL to use to obtain the result (it must return text only, no html, xml or "
@@ -226,7 +270,7 @@ msgid ""
 msgstr ""
 
 msgid "AGI Lookup"
-msgstr ""
+msgstr "AGI Lookup"
 
 msgid ""
 "AGI to use to obtain the result (it must return text only, no html, xml or "
@@ -238,13 +282,13 @@ msgid ""
 msgstr ""
 
 msgid "AGI Result Variable"
-msgstr ""
+msgstr "AGI Result Variable"
 
 msgid "Name of result variable used in AGI script."
 msgstr ""
 
 msgid "Asterisk Variable"
-msgstr ""
+msgstr "Asterisk Variable"
 
 msgid ""
 "Asterisk variable whose value is to be used. The following substitutions are "
@@ -267,11 +311,13 @@ msgstr ""
 msgid "Dynamic Route Entries"
 msgstr "Dynamic Route Destinazioni"
 
-msgid "Dynamic Route"
-msgstr "Dynamic Route"
+msgid ""
+"Less destinations than expected were migrated. Aborting without deleting "
+"source table"
+msgstr ""
 
-msgid "Delete"
-msgstr "Elimina"
+msgid "No default destinations in dynroute_dests to migrate. Skipping...<br>"
+msgstr ""
 
 msgid "Reset"
 msgstr "Reimposta"
@@ -279,38 +325,8 @@ msgstr "Reimposta"
 msgid "Submit"
 msgstr "Invio"
 
-msgid "No Astman, Not loading Dynroute"
-msgstr "Astman non disponibile, Dynroute non caricato"
-
-msgid "Connection Error"
-msgstr "Errore di connessione"
-
-msgid ""
-"A connection to Asterisk Manager could not be made. This module requires "
-"Asterisk to be running and have proper credentials"
-msgstr ""
-"Non è possibile connettere a Asterisk Manager. Asterisk deve essere attivo e "
-"le credenziali di accesso valide"
-
-msgid "Dyname Route Name"
-msgstr "Nome del Dynamic Route"
-
-msgid "Actions"
-msgstr "Azioni"
-
-msgid "Ext"
-msgstr "Match"
-
-msgid "Destination"
-msgstr "Destinazione"
-
-#, php-format
-msgid "Dynamic Route: %s / Option: %s"
-msgstr "Dynamic Route: %s / Option: %s"
-
-#, php-format
-msgid "Dynamic Route: %s"
-msgstr "Dynamic Route: %s"
+#~ msgid "Ext"
+#~ msgstr "Match"
 
 #~ msgid "There is a problem with installation Contact support\n"
 #~ msgstr "L'installazione è fallita. Contatta l'amministratore del sistema\n"
@@ -586,9 +602,6 @@ msgstr "Dynamic Route: %s"
 
 #~ msgid "Decrease Destinations"
 #~ msgstr "Meno Destinazioni"
-
-#~ msgid "Match"
-#~ msgstr "Valore trovato"
 
 #~ msgid "Default destination"
 #~ msgstr "Destinazione di default"

@@ -47,24 +47,24 @@ function dynroute_get_config($engine) {
 
 				switch ($dynroute['sourcetype']) {
 					case 'mysql':
-						$query = stripslashes($dynroute['mysql_query']);
+						$query = $dynroute['mysql_query'];
 						break;
 
 					case 'odbc':
-						$query = stripslashes($dynroute['odbc_query']);
+						$query = $dynroute['odbc_query'];
 						break;
 
 					case 'url':
-						$query = stripslashes($dynroute['url_query']);
+						$query = $dynroute['url_query'];
 						break;
 
 					case 'agi':
-						$query = stripslashes($dynroute['agi_query']);
+						$query = $dynroute['agi_query'];
 
 						break;
 
 					case 'astvar':
-						$query = stripslashes($dynroute['astvar_query']);
+						$query = $dynroute['astvar_query'];
 						break;
 					default:
 						break;
@@ -88,24 +88,24 @@ function dynroute_get_config($engine) {
                                 	}	
 					$ext->add($c, 's', '', new ext_read('dtmfinput',$announcement_msg,'','','',$dynroute['timeout']));
 					if ($dynroute['chan_var_name'] != '')
-						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.stripslashes($dynroute['chan_var_name']), '${dtmfinput}'));
+						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.$dynroute['chan_var_name'], '${dtmfinput}'));
 					if ($dynroute['validation_regex'] != '')
 					{
-						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_REGEX', '${REGEX("'.stripslashes($dynroute['validation_regex']).'" ${dtmfinput})}'));
+						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_REGEX', '${REGEX("'.$dynroute['validation_regex'].'" ${dtmfinput})}'));
 						$ext->add($c, 's', '', new ext_gotoif('$["${DYNROUTE_REGEX}" = "0"]',$c.',2,1'));
 					}
                                 }
 				if ($dynroute['sourcetype']=='mysql' && $dynroute['mysql_host']!='' && $dynroute['mysql_query']!='')
 				{
 					$ext->add($c, 's', '', new ext_setvar('connid', '""'));
-                                	$ext->add($c, 's', '', new ext_mysql_connect('connid', stripslashes($dynroute['mysql_host']),  stripslashes($dynroute['mysql_username']),  stripslashes($dynroute['mysql_password']),  stripslashes($dynroute['mysql_dbname'])));
+                                	$ext->add($c, 's', '', new ext_mysql_connect('connid', $dynroute['mysql_host'],  $dynroute['mysql_username'],  $dynroute['mysql_password'],  $dynroute['mysql_dbname']));
 					$ext->add($c, 's', '', new ext_gotoif('$["${connid}" = ""]',$id.',1,1'));
                                 	$ext->add($c, 's', '', new ext_mysql_query('resultid', 'connid', $query));
                                 	$ext->add($c, 's', '', new ext_mysql_fetch('fetchid', 'resultid', 'dynroute')); 
                                 	$ext->add($c, 's', '', new ext_mysql_clear('resultid'));                            
                                 	$ext->add($c, 's', '', new ext_mysql_disconnect('connid'));
 					if ($dynroute['chan_var_name_res'] != '')
-						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.stripslashes($dynroute['chan_var_name_res']), '${dynroute}'));
+						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.$dynroute['chan_var_name_res'], '${dynroute}'));
 					$ext->add($c, 's', '', new ext_gotoif('$[${fetchid} = 0]',$c.',1,1'));
                                 }
 				if ($dynroute['sourcetype']=='url' && $dynroute['url_query']!='')
@@ -117,28 +117,28 @@ function dynroute_get_config($engine) {
 					$ext->add($c, 's', '', new ext_setvar('dynroute', '${CURL'.'("'.$query.'")}'));
 					$ext->add($c, 's', '', new ext_gotoif('$["${dynroute}" = ""]',$c.',1,1'));
 					if ($dynroute['chan_var_name_res'] != '')
-						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.stripslashes($dynroute['chan_var_name_res']), '${dynroute}'));
+						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.$dynroute['chan_var_name_res'], '${dynroute}'));
                                 }
 				if ($dynroute['sourcetype']=='agi' && $dynroute['agi_query']!='')
 				{
 					$ext->add($c, 's', '', new ext_agi($query));
 					if ($dynroute['agi_var_name_res'] != '')
-						$ext->add($c, 's', '', new ext_setvar('dynroute', '${'.stripslashes($dynroute['agi_var_name_res']).'}'));
+						$ext->add($c, 's', '', new ext_setvar('dynroute', '${'.$dynroute['agi_var_name_res'].'}'));
 					$ext->add($c, 's', '', new ext_gotoif('$["${dynroute}" = ""]',$c.',1,1'));
 					if ($dynroute['chan_var_name_res'] != '')
-						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.stripslashes($dynroute['chan_var_name_res']), '${dynroute}'));
+						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.$dynroute['chan_var_name_res'], '${dynroute}'));
                                 }
 				if ($dynroute['sourcetype']=='odbc' && $dynroute['odbc_func']!='')
 				{
-					$ext->add($c, 's', '', new ext_setvar('dynroute', '${ODBC_'.stripslashes($dynroute['odbc_func']).'("'.$query.'")}'));
+					$ext->add($c, 's', '', new ext_setvar('dynroute', '${ODBC_'.$dynroute['odbc_func'].'("'.$query.'")}'));
 					if ($dynroute['chan_var_name_res'] != '')
-						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.stripslashes($dynroute['chan_var_name_res']), '${dynroute}'));
+						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.$dynroute['chan_var_name_res'], '${dynroute}'));
                                 }
 				if ($dynroute['sourcetype']=='astvar' && $dynroute['astvar_query']!='')
 				{
 					$ext->add($c, 's', '', new ext_setvar('dynroute', $query));
 					if ($dynroute['chan_var_name_res'] != '')
-						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.stripslashes($dynroute['chan_var_name_res']), '${dynroute}'));
+						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.$dynroute['chan_var_name_res'], '${dynroute}'));
                                 }
 				if ($dynroute['sourcetype']=='none' && $dyrnoute['enable_dtmf_input']=='CHECKED')
                                 {
@@ -268,9 +268,12 @@ function dynroute_configprocess(){
 function dynroute_save_details($vals){
 	global $db, $amp_conf;
 
-	foreach($vals as $key => $value) {
-		$vals[$key] = $db->escapeSimple($value);
-	}
+	// shoud be able to do without the escaping when using
+	// db->query since it uses a prepared statement.
+
+	//foreach($vals as $key => $value) {
+	//	$vals[$key] = $db->escapeSimple($value);
+	//}
 
 	if ($vals['id']) {
 		$start = "REPLACE INTO `dynroute` (";
@@ -387,7 +390,7 @@ function dynroute_check_destinations($dest=true) {
 	foreach ($results as $result) {
 		$thisdest = $result['dest'];
 		$thisid   = $result['id'];
-		$name = $result['name'] ? stripslashes($result['name']) : 'Dynamic Route ' . $thisid;
+		$name = $result['name'] ? $result['name'] : 'Dynamic Route ' . $thisid;
 		$destlist[] = array(
 			'dest' => $thisdest,
 			'description' => sprintf(_("Dynamic Route: %s / Option: %s"),$name,$result['selection']),
@@ -424,7 +427,7 @@ function dynroute_getdestinfo($dest) {
 			return array();
 		} else {
 			//$type = isset($active_modules['dynroute']['type'])?$active_modules['dynroute']['type']:'setup';
-			return array('description' => sprintf(_("Dynamic Route: %s"), ($thisexten['name'] ? stripslashes($thisexten['name']) : $thisexten['id'])),
+			return array('description' => sprintf(_("Dynamic Route: %s"), ($thisexten['name'] ? $thisexten['name'] : $thisexten['id'])),
 			             'edit_url' => 'config.php?display=dynroute&action=edit&id='.urlencode($exten),
 								  );
 		}
@@ -444,7 +447,7 @@ function dynroute_recordings_usage($recording_id) {
 		foreach ($results as $result) {
 			$usage_arr[] = array(
 				'url_query' => 'config.php?display=dynroute&action=edit&id='.urlencode($result['id']),
-				'description' => sprintf(_("Dynamic Route: %s"), ($result['name'] ? stripslashes($result['name']) : $result['id'])),
+				'description' => sprintf(_("Dynamic Route: %s"), ($result['name'] ? $result['name'] : $result['id'])),
 			);
 		}
 		return $usage_arr;

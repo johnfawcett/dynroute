@@ -36,7 +36,7 @@ if(action == 'add'){
 }else{
 	$dynroute = dynroute_get_details($id);
 	$heading = _('Edit Dynamic Route: ');
-	$heading .= ($dynroute['name'] ? stripslashes($dynroute['name']) : 'ID '.$dynroute['id']);
+	$heading .= ($dynroute['name'] ? htmlspecialchars($dynroute['name'],ENT_QUOTES) : 'ID '.$dynroute['id']);
 	$usage_list	= framework_display_destination_usage(dynroute_getdest($dynroute['id']));
 	if(!empty($usage_list)){
 		$infohtml = '
@@ -117,7 +117,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="name"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" class="form-control" id="name" name="name" value="<?php echo stripslashes($dynroute['name'])?>">
+													<input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($dynroute['name'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -141,7 +141,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="description"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" class="form-control" id="description" name="description" value="<?php echo stripslashes($dynroute['description'])?>">
+													<input type="text" class="form-control" id="description" name="description" value="<?php echo htmlspecialchars($dynroute['description'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -224,7 +224,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="timeout"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="number" class="form-control" id="timeout" name="timeout" value="<?php echo stripslashes($dynroute['timeout'])?>">
+													<input type="number" class="form-control" id="timeout" name="timeout" value="<?php echo htmlspecialchars($dynroute['timeout'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -248,7 +248,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="validation_regex"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="validation_regex" name="validation_regex" value="<?php echo stripslashes($dynroute['validation_regex'])?>">
+													<input type="text" max="10" class="form-control" id="validation_regex" name="validation_regex" value="<?php echo htmlspecialchars($dynroute['validation_regex'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -272,7 +272,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="max_retries"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="number" max="10" class="form-control" id="max_retries" name="max_retries" value="<?php echo stripslashes($dynroute['max_retries'])?>">
+													<input type="number" max="10" class="form-control" id="max_retries" name="max_retries" value="<?php echo htmlspecialchars($dynroute['max_retries'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -377,7 +377,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="chan_var_name"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="chan_var_name" name="chan_var_name" value="<?php echo stripslashes($dynroute['chan_var_name'])?>">
+													<input type="text" max="10" class="form-control" id="chan_var_name" name="chan_var_name" value="<?php echo htmlspecialchars($dynroute['chan_var_name'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -401,7 +401,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="chan_var_name_res"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="chan_var_name_res" name="chan_var_name_res" value="<?php echo stripslashes($dynroute['chan_var_name_res'])?>">
+													<input type="text" max="10" class="form-control" id="chan_var_name_res" name="chan_var_name_res" value="<?php echo htmlspecialchars($dynroute['chan_var_name_res'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -456,7 +456,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="mysql_host"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="mysql_host" name="mysql_host" value="<?php echo stripslashes($dynroute['mysql_host'])?>">
+													<input type="text" max="10" class="form-control" id="mysql_host" name="mysql_host" value="<?php echo htmlspecialchars($dynroute['mysql_host'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -480,7 +480,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="mysql_dbname"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="mysql_dbname" name="mysql_dbname" value="<?php echo stripslashes($dynroute['mysql_dbname'])?>">
+													<input type="text" max="10" class="form-control" id="mysql_dbname" name="mysql_dbname" value="<?php echo htmlspecialchars($dynroute['mysql_dbname'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -504,7 +504,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="mysql_username"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="mysql_username" name="mysql_username" value="<?php echo stripslashes($dynroute['mysql_username'])?>">
+													<input type="text" max="10" class="form-control" id="mysql_username" name="mysql_username" value="<?php echo htmlspecialchars($dynroute['mysql_username'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -528,7 +528,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="mysql_password"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="mysql_password" name="mysql_password" value="<?php echo stripslashes($dynroute['mysql_password'])?>">
+													<input type="text" max="10" class="form-control" id="mysql_password" name="mysql_password" value="<?php echo htmlspecialchars($dynroute['mysql_password'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -552,7 +552,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="mysql_query"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="mysql_query" name="mysql_query" value="<?php echo stripslashes($dynroute['mysql_query'])?>">
+													<input type="text" max="10" class="form-control" id="mysql_query" name="mysql_query" value="<?php echo htmlspecialchars($dynroute['mysql_query'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -580,7 +580,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="odbc_func"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="odbc_func" name="odbc_func" value="<?php echo stripslashes($dynroute['odbc_func'])?>">
+													<input type="text" max="10" class="form-control" id="odbc_func" name="odbc_func" value="<?php echo htmlspecialchars($dynroute['odbc_func'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -604,7 +604,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="odbc_query"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="odbc_query" name="odbc_query" value="<?php echo stripslashes($dynroute['odbc_query'])?>">
+													<input type="text" max="10" class="form-control" id="odbc_query" name="odbc_query" value="<?php echo htmlspecialchars($dynroute['odbc_query'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -628,7 +628,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="url_query"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="url_query" name="url_query" value="<?php echo stripslashes($dynroute['url_query'])?>">
+													<input type="text" max="10" class="form-control" id="url_query" name="url_query" value="<?php echo htmlspecialchars($dynroute['url_query'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -656,7 +656,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="agi_query"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="agi_query" name="agi_query" value="<?php echo stripslashes($dynroute['agi_query'])?>">
+													<input type="text" max="10" class="form-control" id="agi_query" name="agi_query" value="<?php echo htmlspecialchars($dynroute['agi_query'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -680,7 +680,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="agi_var_name_res"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="agi_var_name_res" name="agi_var_name_res" value="<?php echo stripslashes($dynroute['agi_var_name_res'])?>">
+													<input type="text" max="10" class="form-control" id="agi_var_name_res" name="agi_var_name_res" value="<?php echo htmlspecialchars($dynroute['agi_var_name_res'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -704,7 +704,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="astvar_query"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="text" max="10" class="form-control" id="astvar_query" name="astvar_query" value="<?php echo stripslashes($dynroute['astvar_query'])?>">
+													<input type="text" max="10" class="form-control" id="astvar_query" name="astvar_query" value="<?php echo htmlspecialchars($dynroute['astvar_query'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>

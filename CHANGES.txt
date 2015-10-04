@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 2015 10 04
-	- Release 13.0.2
+	- Release 13.0.3
 	- Fixes mysql error with saving destinations
 
 2015 09 07

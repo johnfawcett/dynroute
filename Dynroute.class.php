@@ -170,9 +170,9 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 				return $e->getMessage();
 		}
 
-// the following upgrade change is further updated later for V.13. Do not move this later than V.13 upgrade statements
+// the following change is no longer needed
 
-		try{
+/*		try{
 			$sql = "SHOW COLUMNS FROM `dynroute_dests` LIKE 'default_dest'";
 			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
 			if (empty($results)) {
@@ -186,7 +186,7 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 		} catch(PDOException $e) {
 				return $e->getMessage();
 		}
-
+*/
 		try{
 			$sql = "SHOW COLUMNS FROM `dynroute` LIKE 'url_query'";
 			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
@@ -387,7 +387,7 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 		try{
 			$sql = "SHOW COLUMNS FROM `dynroute_dests` LIKE 'default_dest'";
 			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
-			if (empty($results)) {
+			if (!empty($results)) {
 				$sql = "ALTER TABLE dynroute_dests DROP COLUMN `default_dest`;";
 				$sth = $this->db->prepare($sql);
 				$sth->execute();

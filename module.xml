@@ -2,7 +2,7 @@
 	<rawname>dynroute</rawname>
 	<repo>standard</repo>
 	<name>Dynamic Routes</name>
-	<version>13.0.1</version>
+	<version>13.0.2</version>
 	<publisher>John Fawcett</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
@@ -13,6 +13,7 @@
 	</description>
 	<changelog>
 		See CHANGES.txt file in module directory for full details.
+		*13.0.2* Fixes error with saving destination
 		*13.0.1* Updated release for Freepbx 13 including automatic upgrade from 2.X releases
 		*13.0.0* First release for Freepbx 13
 		*2.11.4.0* Validation capability, bug fix
@@ -46,6 +47,6 @@
  	<supported>
  		<version>13.0</version>
  	</supported>
-	<location>release/13/dynroute-13.0.1.tgz</location>
+	<location>release/13/dynroute-13.0.2.tgz</location>
 	<md5sum>57d8316dc41fcd3153cefd00a5e3bdd5</md5sum>
 </module>

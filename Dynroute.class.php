@@ -384,6 +384,19 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 				return $e->getMessage();
 		}
 
+		try{
+			$sql = "SHOW COLUMNS FROM `dynroute_dests` LIKE 'default_dest'";
+			$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+			if (empty($results)) {
+				$sql = "ALTER TABLE dynroute_dests DROP COLUMN `default_dest`;";
+				$sth = $this->db->prepare($sql);
+				$sth->execute();
+			}		
+		} catch(PDOException $e) {
+				return $e->getMessage();
+		}
+
+
 		return;
 	}
 

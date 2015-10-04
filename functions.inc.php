@@ -323,7 +323,7 @@ function dynroute_save_entries($id, $entries){
 			}
 
 		}
-		$sql = $db->prepare('INSERT INTO dynroute_dests (dynroute_id, selection, dest) VALUES (?, ?, ?)');
+		$sql = $db->prepare('INSERT INTO dynroute_dests VALUES (?, ?, ?)');
 		$res = $db->executeMultiple($sql, $d);
 		if ($db->IsError($res)){
 			die_freepbx($res->getDebugInfo());

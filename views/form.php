@@ -50,7 +50,7 @@ if(action == 'add'){
 		</div>
 		';
 	}
-	$delURL = '?display=dynroute&action=edit&id='.$id;
+	$delURL = '?display=dynroute&action=delete&id='.$id;
 }
 $recordingList = recordings_list();
 $annopts = '<option>'._('None').'</option>';

@@ -310,7 +310,8 @@ function dynroute_save_details($vals){
 function dynroute_save_entries($id, $entries){
 	global $db;
 	$id = $db->escapeSimple($id);
-	sql('DELETE FROM dynroute_dests WHERE dynroute_id = "' . $id . '"');
+	$sql = 'DELETE FROM dynroute_dests WHERE dynroute_id = "' . $id . '"';
+        $sth = $db->query($sql);
 	if ($entries) {
 		for ($i = 0; $i < count($entries['ext']); $i++) {
 			//make sure there is an extension & goto set - otherwise SKIP IT
@@ -368,13 +369,16 @@ function dynroute_draw_entries($id){
 //delete a dynroute + entires
 function dynroute_delete($id) {
 	global $db;
-	sql('DELETE FROM dynroute WHERE id = "' . $db->escapeSimple($id) . '"');
-	sql('DELETE FROM dynroute_dests WHERE dynroute_id = "' . $db->escapeSimple($id) . '"');
+	$sql = 'DELETE FROM dynroute WHERE id = "' . $db->escapeSimple($id) . '"';
+	$sth = $db->query($sql);
+
+	$sql = 'DELETE FROM dynroute_dests WHERE dynroute_id = "' . $db->escapeSimple($id) . '"';
+	$sth = $db->query($sql);
 }
 //----------------------------------------------------------------------------
 // Dynamic Destination Registry and Recordings Registry Functions
 function dynroute_check_destinations($dest=true) {
-	global $active_modules;
+	global $active_modules,$db;
 
 	$destlist = array();
 	if (is_array($dest) && empty($dest)) {
@@ -385,7 +389,7 @@ function dynroute_check_destinations($dest=true) {
 		$sql .= "WHERE dest in ('".implode("','",$dest)."')";
 	}
 	$sql .= "ORDER BY name";
-	$results = sql($sql,"getAll",DB_FETCHMODE_ASSOC);
+	$results = $db->query($sql);
 
 	foreach ($results as $result) {
 		$thisdest = $result['dest'];
@@ -437,10 +441,10 @@ function dynroute_getdestinfo($dest) {
 }
 
 function dynroute_recordings_usage($recording_id) {
-	global $active_modules;
+	global $active_modules,$db;
 
 	$sql = "SELECT `id`, `name` FROM `dynroute` WHERE `announcement_id` = '$recording_id' OR `invalid_retry_rec_id` = '$recording_id' OR `invalid_rec_id` = '$recording_id'";
-	$results = sql($sql, "getAll",DB_FETCHMODE_ASSOC);
+	$results = $db->query($sql);
 	if (empty($results)) {
 		return array();
 	} else {

@@ -14,6 +14,12 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+2016 03 13
+	- Release 13.0.4
+	- Fixes for compatibility with Freepbx stable release 13.0.79
+	  Fixed sql error on fresh install
+	  Fixed Delete button not working
+
 2015 10 04
 	- Release 13.0.3
 	- Fixes mysql error with saving destinations

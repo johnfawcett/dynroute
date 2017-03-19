@@ -85,8 +85,8 @@
 		<table name="dynroute_dests">
 			<field name="dynroute_id" type="integer" primaryKey="true"/>
 			<field name="selection" type="string" length="190" default="" primaryKey="true"/>
-			<field name="dest" type="string" length="50" notnull="false"/>
+			<field name="dest" type="string" length="255" notnull="false"/>
 		</table>
 	</database>
-	<upgradeurl>https://www.voipsupport.it/dynroute.json</upgradeurl>
+	<updateurl>https://www.voipsupport.it/dynroute.json</updateurl>
 </module>

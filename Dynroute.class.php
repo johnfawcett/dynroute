@@ -59,7 +59,7 @@ class Dynroute extends \FreePBX_Helpers implements \BMO {
 		try{
 			$sql = "CREATE TABLE IF NOT EXISTS $table(
 				`dynroute_id` INT NOT NULL, 
-				`selection` VARCHAR(255), 
+				`selection` VARCHAR(190), 
 				`dest` VARCHAR(50) 
 			);";
 			$sth = $this->db->prepare($sql);

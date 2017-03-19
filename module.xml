@@ -2,8 +2,9 @@
 	<rawname>dynroute</rawname>
 	<repo>standard</repo>
 	<name>Dynamic Routes</name>
-	<version>13.0.5</version>
+	<version>14.0.0</version>
 	<publisher>John Fawcett</publisher>
+	<info>https://www.voipsupport.it/</info>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
 	<category>Applications</category>
@@ -13,6 +14,7 @@
 	</description>
 	<changelog>
 		See CHANGES.txt file in module directory for full details.
+		*14.0.0* Compatible with Freepbx 14
 		*13.0.5* Database schema change for compatibility with Freepbx 14 beta release
 		*13.0.4* Compatible with Freepbx 13.0.79 stable release
 		*13.0.3* Fixes error with saving destination
@@ -33,7 +35,7 @@
 		*2.6.0.2* First Release
 	</changelog>
 	<depends>
-		<version>13.0.0</version>
+		<version>14.0.0</version>
 		<module>recordings</module>
 	</depends>
 	<menuitems>
@@ -47,8 +49,44 @@
 		</dynroute>
  	</popovers>
  	<supported>
- 		<version>13.0</version>
+ 		<version>14.0</version>
  	</supported>
-	<location>release/13/dynroute-13.0.5.tgz</location>
+	<location>release/13/dynroute-14.0.0.tgz</location>
 	<md5sum>57d8316dc41fcd3153cefd00a5e3bdd5</md5sum>
+	<database>
+		<table name="dynroute">
+			<field name="id" type="integer" primaryKey="true" autoincrement="true"/>
+			<field name="name" type="string" length="255"/>
+			<field name="description" type="text" length=""/>
+			<field name="sourcetype" type="string" length="100" notnull="false"/>
+			<field name="mysql_host" type="string" length="60" notnull="false"/>
+			<field name="mysql_dbname" type="string" length="60" notnull="false"/>
+			<field name="mysql_query" type="text" length="" notnull="false"/>
+			<field name="mysql_username" type="string" length="30" notnull="false"/>
+			<field name="mysql_password" type="string" length="30" notnull="false"/>
+			<field name="odbc_func" type="string" length="100" notnull="false"/>
+			<field name="odbc_query" type="text" length="" notnull="false"/>
+			<field name="url_query" type="text" length="" notnull="false"/>
+			<field name="agi_query" type="text" length="" notnull="false"/>
+			<field name="agi_var_name_res" type="string" length="255" notnull="false"/>
+			<field name="astvar_query" type="text" length="" notnull="false"/>
+			<field name="enable_dtmf_input" type="string" length="8" notnull="false"/>
+			<field name="timeout" type="integer" notnull="false"/>
+			<field name="announcement_id" type="integer" notnull="false"/>
+			<field name="chan_var_name" type="string" length="255" notnull="false"/>
+			<field name="chan_var_name_res" type="string" length="255" notnull="false"/>
+			<field name="validation_regex" type="text" length="" notnull="false"/>
+			<field name="max_retries" type="integer" notnull="false"/>
+			<field name="invalid_retry_rec_id" type="integer" notnull="false"/>
+			<field name="invalid_rec_id" type="integer" notnull="false"/>
+			<field name="invalid_dest" type="string" length="255" notnull="false"/>
+			<field name="default_dest" type="string" length="255" notnull="false"/>
+		</table>
+		<table name="dynroute_dests">
+			<field name="dynroute_id" type="integer" primaryKey="true"/>
+			<field name="selection" type="string" length="190" default="" primaryKey="true"/>
+			<field name="dest" type="string" length="50" notnull="false"/>
+		</table>
+	</database>
+	<upgradeurl>https://www.voipsupport.it/dynroute.json</upgradeurl>
 </module>

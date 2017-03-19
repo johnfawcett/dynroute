@@ -1,6 +1,6 @@
 <module>
 	<rawname>dynroute</rawname>
-	<repo>standard</repo>
+	<repo>local</repo>
 	<name>Dynamic Routes</name>
 	<version>14.0.0</version>
 	<publisher>John Fawcett</publisher>
@@ -51,7 +51,7 @@
  	<supported>
  		<version>14.0</version>
  	</supported>
-	<location>release/13/dynroute-14.0.0.tgz</location>
+	<location>release/14/dynroute-14.0.0.tgz</location>
 	<md5sum>57d8316dc41fcd3153cefd00a5e3bdd5</md5sum>
 	<database>
 		<table name="dynroute">
@@ -88,5 +88,5 @@
 			<field name="dest" type="string" length="255" notnull="false"/>
 		</table>
 	</database>
-	<updateurl>https://www.voipsupport.it/dynroute.json</updateurl>
+	<updateurl>https://updates.voipsupport.it/dynroute.json</updateurl>
 </module>

@@ -226,7 +226,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="max_digits"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="number" class="form-control" id="max_digits" name="max_digits" value="<?php echo htmlspecialchars($dynroute['max_digits'],ENT_QUOTES)?>">
+													<input type="number" min=0 class="form-control" id="max_digits" name="max_digits" value="<?php echo htmlspecialchars($dynroute['max_digits'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -250,7 +250,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="timeout"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="number" class="form-control" id="timeout" name="timeout" value="<?php echo htmlspecialchars($dynroute['timeout'],ENT_QUOTES)?>">
+													<input type="number" min=0 class="form-control" id="timeout" name="timeout" value="<?php echo htmlspecialchars($dynroute['timeout'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>
@@ -298,7 +298,7 @@ foreach ($hooks as $key => $value) {
 													<i class="fa fa-question-circle fpbx-help-icon" data-for="max_retries"></i>
 												</div>
 												<div class="col-md-9">
-													<input type="number" max="10" class="form-control" id="max_retries" name="max_retries" value="<?php echo htmlspecialchars($dynroute['max_retries'],ENT_QUOTES)?>">
+													<input type="number" min=0 max="10" class="form-control" id="max_retries" name="max_retries" value="<?php echo htmlspecialchars($dynroute['max_retries'],ENT_QUOTES)?>">
 												</div>
 											</div>
 										</div>

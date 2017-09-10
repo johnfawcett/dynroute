@@ -101,6 +101,7 @@ public function ajaxHandler(){
 						$r['name'] = $r['name'] ? $r['name'] : 'Dynamic Route ID: ' . $r['id'];
 						$ret[] = array(
 								'name' => $r['name'],
+								'description' => $r['description'],
 								'id' => $r['id'],
 								'link' => array($r['id'],$r['name'])
 							);

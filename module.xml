@@ -77,7 +77,7 @@
 			<field name="chan_var_name" type="string" length="255" notnull="false"/>
 			<field name="chan_var_name_res" type="string" length="255" notnull="false"/>
 			<field name="validation_regex" type="text" length="" notnull="false"/>
-			<field name="max_retries" type="integer" notnull="false"/>
+			<field name="max_retries" type="integer" default="0"/>
 			<field name="invalid_retry_rec_id" type="integer" notnull="false"/>
 			<field name="invalid_rec_id" type="integer" notnull="false"/>
 			<field name="invalid_dest" type="string" length="255" notnull="false"/>

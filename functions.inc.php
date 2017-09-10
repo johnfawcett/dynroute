@@ -86,7 +86,7 @@ function dynroute_get_config($engine) {
                                 	} else {
 						$announcement_msg = '';
                                 	}	
-					$ext->add($c, 's', '', new ext_read('dtmfinput',$announcement_msg,'','','',$dynroute['timeout']));
+					$ext->add($c, 's', '', new ext_read('dtmfinput',$announcement_msg,$dynroute['max_digits'],'','',$dynroute['timeout']));
 					if ($dynroute['chan_var_name'] != '')
 						$ext->add($c, 's', '', new ext_setvar('__DYNROUTE_'.$dynroute['chan_var_name'], '${dtmfinput}'));
 					if ($dynroute['validation_regex'] != '')
@@ -220,7 +220,7 @@ function dynroute_configprocess(){
 		$get_var = array('id', 'name', 'description', 'sourcetype',
 				'mysql_host','mysql_dbname','mysql_query','mysql_username','mysql_password',
 				'odbc_func','odbc_query','url_query','agi_query','agi_var_name_res',
-				'astvar_query','enable_dtmf_input','timeout','announcement_id',
+				'astvar_query','enable_dtmf_input','max_digits','timeout','announcement_id',
 				'chan_var_name','chan_var_name_res','validation_regex',
 				'max_retries','invalid_retry_rec_id','invalid_rec_id',
 				'invalid_dest', 'default_dest'
@@ -232,6 +232,7 @@ function dynroute_configprocess(){
 
 
 		$vars['enable_dtmf_input'] = empty($vars['enable_dtmf_input']) ? '' : 'CHECKED';
+		$vars['max_digits'] = empty($vars['max_digits']) ? '0' : $vars['max_digits'];
 		$vars['timeout'] = empty($vars['timeout']) ? '5' : $vars['timeout'];
 		$vars['chan_var_name'] = empty($vars['chan_var_name']) ? '' : $vars['chan_var_name'];
 		$vars['chan_var_name_res'] = empty($vars['chan_var_name_res']) ? '' : $vars['chan_var_name_res'];

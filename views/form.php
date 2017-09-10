@@ -10,7 +10,7 @@ if(action == 'add'){
 	$deet = array('id', 'name', 'description', 'sourcetype',
 				'mysql_host','mysql_dbname','mysql_query','mysql_username','mysql_password',
 				'odbc_func','odbc_query','url_query','agi_query','agi_var_name_res',
-				'astvar_query','enable_dtmf_input','timeout','announcement_id',
+				'astvar_query','enable_dtmf_input','max_digits','timeout','announcement_id',
 				'chan_var_name','chan_var_name_res','validation_regex',
 				'max_retries','invalid_retry_rec_id','invalid_rec_id',
 				'invalid_dest','default_dest'
@@ -26,6 +26,9 @@ if(action == 'add'){
 				$dynroute[$d] = 5;
 				break;
 			case 'max_retries':
+				$dynroute[$d] = 0;
+				break;
+			case 'max_digits':
 				$dynroute[$d] = 0;
 				break;
 			default:
@@ -186,7 +189,6 @@ foreach ($hooks as $key => $value) {
 								</div>
 							</div>
 							<!--END Enable DTMF-->
-
 							<!--Announcement-->
 							<div class="element-container">
 								<div class="row">
@@ -213,6 +215,30 @@ foreach ($hooks as $key => $value) {
 								</div>
 							</div>
 							<!--END Announcement-->
+							<!--Max digits-->
+							<div class="element-container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+											<div class="form-group">
+												<div class="col-md-3">
+													<label class="control-label" for="max_digits"><?php echo _("Max digits") ?></label>
+													<i class="fa fa-question-circle fpbx-help-icon" data-for="max_digits"></i>
+												</div>
+												<div class="col-md-9">
+													<input type="number" class="form-control" id="max_digits" name="max_digits" value="<?php echo htmlspecialchars($dynroute['max_digits'],ENT_QUOTES)?>">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<span id="max_digits-help" class="help-block fpbx-help-block"><?php echo _("Maximum number of DTMF digits. If zero then no limit. Avoids having to press # key at end of fixed input length.")?></span>
+									</div>
+								</div>
+							</div>
+							<!--END Max digits-->
 							<!--Timeout-->
 							<div class="element-container">
 								<div class="row">

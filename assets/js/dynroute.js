@@ -51,7 +51,7 @@ $(document).ready(function(){
 	}
 
 	//delete rows on click
-	$('.delete_entrie').live('click', function(e){
+	$(document).on('click','.delete_entrie', function(e){	
 		e.preventDefault();
 		$(this).closest('tr').fadeOut('normal', function(){$(this).closest('tr').remove();});
 	});

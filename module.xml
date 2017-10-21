@@ -73,6 +73,7 @@
 			<field name="astvar_query" type="text" length="" notnull="false"/>
 			<field name="enable_dtmf_input" type="string" length="8" notnull="false"/>
 			<field name="max_retries" type="integer" notnull="false"/>
+			<field name="max_digits" type="integer" notnull="false"/>
 			<field name="timeout" type="integer" notnull="false"/>
 			<field name="announcement_id" type="integer" notnull="false"/>
 			<field name="chan_var_name" type="string" length="255" notnull="false"/>

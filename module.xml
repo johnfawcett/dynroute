@@ -2,7 +2,7 @@
 	<rawname>dynroute</rawname>
 	<repo>local</repo>
 	<name>Dynamic Routes</name>
-	<version>15.0.cl01</version>
+	<version>15.0.0</version>
 	<publisher>John Fawcett</publisher>
 	<info>https://www.voipsupport.it/</info>
 	<license>GPLv3+</license>

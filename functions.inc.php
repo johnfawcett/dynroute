@@ -238,8 +238,9 @@ function dynroute_configprocess(){
 		$vars['chan_var_name_res'] = empty($vars['chan_var_name_res']) ? '' : $vars['chan_var_name_res'];
 		$vars['validation_regex'] = empty($vars['validation_regex']) ? '' : $vars['validation_regex'];
 		$vars['max_retries'] = empty($vars['max_retries']) ? '0' : $vars['max_retries'];
-		$vars['invalid_retry_rec_id'] = empty($vars['invalid_retry_rec_id']) ? '0' : $vars['invalid_retry_rec_id'];
-		$vars['invalid_rec_id'] = empty($vars['invalid_rec_id']) ? '0' : $vars['invalid_rec_id'];
+		$vars['invalid_retry_rec_id'] = empty($vars['invalid_retry_rec_id']) || $vars['invalid_retry_rec_id'] == 'None' ? '0' : $vars['invalid_retry_rec_id'];
+		$vars['invalid_rec_id'] = empty($vars['invalid_rec_id']) || $vars['invalid_rec_id'] == 'None' ? '0' : $vars['invalid_rec_id'];
+		$vars['announcement_id'] = empty($vars['announcement_id']) || $vars['announcement_id'] == 'None' ? '0' : $vars['announcement_id'];
 
 		$action		= isset($_REQUEST['action'])	? $_REQUEST['action']	: '';
 		$entries	= isset($_REQUEST['entries'])	? $_REQUEST['entries']	: '';

@@ -1,14 +1,26 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# This file is part of FreePBX.
 #
-#, fuzzy
+#    FreePBX is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    FreePBX is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with FreePBX.  If not, see <http://www.gnu.org/licenses/>.
+#
+# FreePBX language template for dynroute
+# Copyright (C) 2008, 2009, 2010 Bandwith.com
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: FreePBX dynroute module\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 23:37+0200\n"
+"POT-Creation-Date: 2018-01-21 16:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,44 +29,16 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Match"
-msgstr ""
-
-msgid "Destination"
+msgid "Dynamic Route"
 msgstr ""
 
 msgid "Delete"
 msgstr ""
 
-#, php-format
-msgid "Dynamic Route: %s / Option: %s"
+msgid "Reset"
 msgstr ""
 
-#, php-format
-msgid "Dynamic Route: %s"
-msgstr ""
-
-msgid "No Astman, Not loading Dynroute"
-msgstr ""
-
-msgid "Connection Error"
-msgstr ""
-
-msgid ""
-"A connection to Asterisk Manager could not be made. This module requires "
-"Asterisk to be running and have proper credentials"
-msgstr ""
-
-msgid "Dynamic Route"
-msgstr ""
-
-msgid "Add Dynamic Route"
-msgstr ""
-
-msgid "Dyname Route Name"
-msgstr ""
-
-msgid "Actions"
+msgid "Submit"
 msgstr ""
 
 msgid "value to be matched"
@@ -64,6 +48,9 @@ msgid "Delete this entry. Dont forget to click Submit to save changes!"
 msgstr ""
 
 msgid "List Dynamc Routes"
+msgstr ""
+
+msgid "Add Dynamic Route"
 msgstr ""
 
 msgid "Dynamic Route List"
@@ -109,6 +96,14 @@ msgid "Announcement"
 msgstr ""
 
 msgid "Greeting to be played on entry to the Dynamic Route."
+msgstr ""
+
+msgid "Max digits"
+msgstr ""
+
+msgid ""
+"Maximum number of DTMF digits. If zero then no limit. Avoids having to press "
+"# key at end of fixed input length."
 msgstr ""
 
 msgid "Timeout"
@@ -300,16 +295,36 @@ msgstr ""
 msgid "Dynamic Route Entries"
 msgstr ""
 
+msgid "No Astman, Not loading Dynroute"
+msgstr ""
+
+msgid "Connection Error"
+msgstr ""
+
 msgid ""
-"Less destinations than expected were migrated. Aborting without deleting "
-"source table"
+"A connection to Asterisk Manager could not be made. This module requires "
+"Asterisk to be running and have proper credentials"
 msgstr ""
 
-msgid "No default destinations in dynroute_dests to migrate. Skipping...<br>"
+msgid "Dyname Route Name"
 msgstr ""
 
-msgid "Reset"
+msgid "Description"
 msgstr ""
 
-msgid "Submit"
+msgid "Actions"
+msgstr ""
+
+msgid "Match"
+msgstr ""
+
+msgid "Destination"
+msgstr ""
+
+#, php-format
+msgid "Dynamic Route: %s / Option: %s"
+msgstr ""
+
+#, php-format
+msgid "Dynamic Route: %s"
 msgstr ""

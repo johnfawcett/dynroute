@@ -2,7 +2,7 @@
 	<rawname>dynroute</rawname>
 	<repo>local</repo>
 	<name>Dynamic Routes</name>
-	<version>14.0.1</version>
+	<version>15.0.cl01</version>
 	<publisher>John Fawcett</publisher>
 	<info>https://www.voipsupport.it/</info>
 	<license>GPLv3+</license>
@@ -14,7 +14,8 @@
 	</description>
 	<changelog>
 		See CHANGES.txt file in module directory for full details.
-		*14.0.q* Bug fix deleting dynroute entries, added max digits field for dtmf input
+		*15.0.0* Compatibility for Freepbx 15
+		*14.0.1* Bug fix deleting dynroute entries, added max digits field for dtmf input
 		*14.0.0* Compatible with Freepbx 14
 		*13.0.5* Database schema change for compatibility with Freepbx 14 beta release
 		*13.0.4* Compatible with Freepbx 13.0.79 stable release
@@ -50,9 +51,9 @@
 		</dynroute>
  	</popovers>
  	<supported>
- 		<version>14.0</version>
+ 		<version>15.0</version>
  	</supported>
-	<location>release/14/dynroute-14.0.0.tgz</location>
+	<location>release/15/dynroute-15.0.0.tgz</location>
 	<md5sum>57d8316dc41fcd3153cefd00a5e3bdd5</md5sum>
 	<database>
 		<table name="dynroute">

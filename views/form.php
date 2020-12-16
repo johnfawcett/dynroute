@@ -5,7 +5,7 @@
 // Freepbx IVR module
 
 extract($request, EXTR_SKIP);
-if(action == 'add'){
+if($action == 'add'){
 	$heading = _("Add Dynamic Route");
 	$deet = array('id', 'name', 'description', 'sourcetype',
 				'mysql_host','mysql_dbname','mysql_query','mysql_username','mysql_password',

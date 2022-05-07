@@ -1,6 +1,6 @@
 #!/usr/bin/php -q
 <?php
-// Copyright (c) 2015-2017 John Fawcett
+// Copyright (c) 2015-2020 John Fawcett
 // This is a dervied work licenced under GPL V3 or later
    
 GLOBAL $stdin, $stdout, $stdlog, $parm_debug_on;
@@ -13,7 +13,7 @@ error_reporting(0);
 $parm_error_log = '/tmp/error.log';
 
 // Set to 1 to turn on the log file
-$parm_debug_on = 1;
+$parm_debug_on = 0;
 
 
 if ($parm_debug_on)
@@ -42,6 +42,9 @@ while ( !feof($stdin) )
 	}
 } 
 
+// Here you should do any AGI processing you want
+// In this example script, I just added together the two input 
+// parameters.
 
 $result=$argv[1]+$argv[2];
 execute_agi('SET VARIABLE dynroute '.$result);

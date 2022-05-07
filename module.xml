@@ -2,7 +2,7 @@
 	<rawname>dynroute</rawname>
 	<repo>local</repo>
 	<name>Dynamic Routes</name>
-	<version>15.0.0</version>
+	<version>16.1.0</version>
 	<publisher>John Fawcett</publisher>
 	<info>https://www.voipsupport.it/</info>
 	<license>GPLv3+</license>
@@ -14,6 +14,7 @@
 	</description>
 	<changelog>
 		See CHANGES.txt file in module directory for full details.
+		*16.1.0* Added Backup and Restore. Added ability to duplicate Dynamic Routes. Updated labels and Italian translation. Removal unmaintained Dutch translation. Bug fixes
 		*15.0.0* Compatibility for Freepbx 15
 		*14.0.1* Bug fix deleting dynroute entries, added max digits field for dtmf input
 		*14.0.0* Compatible with Freepbx 14
@@ -37,7 +38,6 @@
 		*2.6.0.2* First Release
 	</changelog>
 	<depends>
-		<version>14.0.0</version>
 		<module>recordings</module>
 	</depends>
 	<menuitems>
@@ -51,16 +51,17 @@
 		</dynroute>
  	</popovers>
  	<supported>
- 		<version>15.0</version>
+ 		<version>16.0</version>
  	</supported>
-	<location>release/15/dynroute-15.0.0.tgz</location>
-	<md5sum>57d8316dc41fcd3153cefd00a5e3bdd5</md5sum>
+	<location>release/16/dynroute-16.1.0.tgz</location>
+	<md5sum></md5sum>
 	<database>
 		<table name="dynroute">
 			<field name="id" type="integer" primaryKey="true" autoincrement="true"/>
 			<field name="name" type="string" length="255"/>
 			<field name="description" type="text" length=""/>
 			<field name="sourcetype" type="string" length="100" notnull="false"/>
+			<field name="enable_substitutions" type="string" length="8" default="CHECKED"/>
 			<field name="mysql_host" type="string" length="60" notnull="false"/>
 			<field name="mysql_dbname" type="string" length="60" notnull="false"/>
 			<field name="mysql_query" type="text" length="" notnull="false"/>
@@ -73,7 +74,6 @@
 			<field name="agi_var_name_res" type="string" length="255" notnull="false"/>
 			<field name="astvar_query" type="text" length="" notnull="false"/>
 			<field name="enable_dtmf_input" type="string" length="8" notnull="false"/>
-			<field name="max_retries" type="integer" notnull="false"/>
 			<field name="max_digits" type="integer" notnull="false"/>
 			<field name="timeout" type="integer" notnull="false"/>
 			<field name="announcement_id" type="integer" notnull="false"/>
@@ -92,5 +92,4 @@
 			<field name="dest" type="string" length="255" notnull="false"/>
 		</table>
 	</database>
-	<updateurl>https://updates.voipsupport.it/dynroute.json</updateurl>
 </module>

@@ -1,5 +1,5 @@
 <?php
-// Copyright (c) 2015-2017 John Fawcett
+// Copyright (c) 2015-2022 John Fawcett
 // This is a dervied work licenced under GPL V3 or later
 // The original file was published by Sagoma Technologies in
 // Freepbx IVR module
@@ -7,7 +7,7 @@
 extract($request, EXTR_SKIP);
 if($action == 'add'){
 	$heading = _("Add Dynamic Route");
-	$deet = array('id', 'name', 'description', 'sourcetype',
+	$deet = array('id', 'name', 'description', 'sourcetype','enable_substitutions',
 				'mysql_host','mysql_dbname','mysql_query','mysql_username','mysql_password',
 				'odbc_func','odbc_query','url_query','agi_query','agi_var_name_res',
 				'astvar_query','enable_dtmf_input','max_digits','timeout','announcement_id',
@@ -16,7 +16,7 @@ if($action == 'add'){
 				'invalid_dest','default_dest'
 				);
 
-	//keep vairables set on new dymaic routes
+	//set defaults on new dymaic routes
 	foreach ($deet as $d) {
 		switch ($d){
 			case 'announcement_id':
@@ -30,6 +30,9 @@ if($action == 'add'){
 				break;
 			case 'max_digits':
 				$dynroute[$d] = 0;
+				break;
+			case 'enable_substitutions':
+				$dynroute[$d] = 'CHECKED';
 				break;
 			default:
 			$dynroute[$d] = '';
@@ -184,7 +187,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="enable_dtmf_input-help" class="help-block fpbx-help-block"><?php echo _("Allows input of DTMF")?></span>
+										<span id="enable_dtmf_input-help" class="help-block fpbx-help-block"><?php echo _("Wait for DTMF input")?></span>
 									</div>
 								</div>
 							</div>
@@ -210,7 +213,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="announcement_id-help" class="help-block fpbx-help-block"><?php echo _("Greeting to be played on entry to the Dynamic Route.")?></span>
+										<span id="announcement_id-help" class="help-block fpbx-help-block"><?php echo _("Greeting to be played prior to DTMF input.")?></span>
 									</div>
 								</div>
 							</div>
@@ -234,7 +237,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="max_digits-help" class="help-block fpbx-help-block"><?php echo _("Maximum number of DTMF digits. If zero then no limit. Avoids having to press # key at end of fixed input length.")?></span>
+										<span id="max_digits-help" class="help-block fpbx-help-block"><?php echo _("Maximum number of DTMF digits. If zero then no limit. Avoids having to press # key at end of fixed input length. Additional DTMF input is ignored.")?></span>
 									</div>
 								</div>
 							</div>
@@ -258,7 +261,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="timeout-help" class="help-block fpbx-help-block"><?php echo _("Amount of time in seconds for dtmf timeout")?></span>
+										<span id="timeout-help" class="help-block fpbx-help-block"><?php echo _("Time in seconds to wait for DTMF input")?></span>
 									</div>
 								</div>
 							</div>
@@ -282,7 +285,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="validation_regex-help" class="help-block fpbx-help-block"><?php echo _("Validation rules using a Asterisk regular expression (see Asterisk REGEX_MATCH). For example to ensure the input is between 3 and 4 digits long you could use ^[0-9]\{3,4\}$")?></span>
+										<span id="validation_regex-help" class="help-block fpbx-help-block"><?php echo _("Validation rules using a Asterisk regular expression. The DTMF input will be validated with Asterisk REGEX_MATCH function using this REGEX. For example to ensure the input is between 3 and 4 digits long you could use ^[0-9]\{3,4\}$ in this field. Non matching DTMF will produce a retry depending on the value of Invalid Retries.")?></span>
 									</div>
 								</div>
 							</div>
@@ -306,7 +309,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="max_retries-help" class="help-block fpbx-help-block"><?php echo _("Number of times to retry when dtmf does not match validation rules")?></span>
+										<span id="max_retries-help" class="help-block fpbx-help-block"><?php echo _("Number of times to retry when DTMF does not match validation rule.")?></span>
 									</div>
 								</div>
 							</div>
@@ -435,7 +438,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="chan_var_name_res-help" class="help-block fpbx-help-block"><?php echo _("Name of variable in which to save lookup result for future use in the dialplan or further dynamic routes. This is available as [xxx] in the query/lookup where xxx is the name of the variable you specify here. To use the variable in the dialplan (e.g. custom applicaitons) it is necessary to prefix it with DYNROUTE_ e.g. DYNROUTE_xxx")?></span>
+										<span id="chan_var_name_res-help" class="help-block fpbx-help-block"><?php echo _("Name of variable in which to save lookup result for future use in the dialplan or further dynamic routes. This is available as [xxx] in the query/lookup where xxx is the name of the variable you specify here. To use the variable in the dialplan (e.g. custom applicaitons) it is necessary to prefix it with DYNROUTE_ e.g. DYNROUTE_xxx. In the case of lookup type None then this will be valorized with DTMF input (if enabled).")?></span>
 									</div>
 								</div>
 							</div>
@@ -471,6 +474,33 @@ foreach ($hooks as $key => $value) {
 								</div>
 							</div>
 							<!--END Source Type-->
+							<!--Enable Substitutions-->
+							<div class="element-container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+											<div class="form-group">
+												<div class="col-md-3">
+													<label class="control-label" for="enable_substitutions"><?php echo _("Enable substitutions") ?></label>
+													<i class="fa fa-question-circle fpbx-help-icon" data-for="enable_substitutions"></i>
+												</div>
+												<div class="col-md-9 radioset">
+													<input type="radio" name="enable_substitutions" id="substyes" value="CHECKED" <?php echo ($dynroute['enable_substitutions']=='CHECKED'?'CHECKED':'') ?>>
+													<label for="substyes"><?php echo _("Yes");?></label>
+													<input type="radio" name="enable_substitutions" id="substno" value="" <?php echo ($dynroute['enable_substitutions']=='CHECKED'?'':'CHECKED') ?>>
+													<label for="substno"><?php echo _("No");?></label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<span id="enable_substitutions-help" class="help-block fpbx-help-block"><?php echo _("Enable variable substitutions in the lookup query (for [INPUT], [NUMBER], [DID] or [name] where name is a Saved Input Variable Name or Saved Result Variable Name from a previous Dynamic Route). You probably want to disable this if using a lookup type of Asterisk Variable and a REGEX expression in the lookup since substitions can be interpreted wrongly.")?></span>
+									</div>
+								</div>
+							</div>
+							<!--End Enable substitutions-->
 							<!--Mysql host-->
 							<div class="element-container src_mysql">
 								<div class="row">
@@ -514,7 +544,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="mysql_dbname-help" class="help-block fpbx-help-block"><?php echo _("Database to connect to on MySQL server")?></span>
+										<span id="mysql_dbname-help" class="help-block fpbx-help-block"><?php echo _("Database to use.")?></span>
 									</div>
 								</div>
 							</div>
@@ -614,7 +644,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="odbc_func-help" class="help-block fpbx-help-block"><?php echo _("ODBC Function to use. The value used here should be the name of a section in /etc/asterisk/func_odbc.conf. If checking whether the function is registered at the asterisk console with \"core show functions \" it has an ODBC_ prepended. ")?></span>
+										<span id="odbc_func-help" class="help-block fpbx-help-block"><?php echo _("ODBC Function to use. The value used here should be the name of a section in /etc/asterisk/func_odbc.conf without the ODBC_ prefix that asterisk adds. The dynroute module will add the ODBC_ prefix. For debugging you can also check if the ODBC function is registered at the asterisk console with \"core show functions \".")?></span>
 									</div>
 								</div>
 							</div>
@@ -771,7 +801,7 @@ foreach ($hooks as $key => $value) {
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<span id="gotodefault-help" class="help-block fpbx-help-block"><?php echo _("Destination to send the call to if there is no match in the Dynamic Route Entries section below or if the lookup fails.")?></span>
+										<span id="gotodefault-help" class="help-block fpbx-help-block"><?php echo _("Destination to send the call to if there is no match in the Dynamic Route Entries section below or if the lookup fails or returns an empty value.")?></span>
 									</div>
 								</div>
 							</div>

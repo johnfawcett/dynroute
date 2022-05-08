@@ -14,6 +14,41 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+2022 05 08
+	- Completion of Restore functionality
+
+2022 05 07
+	- Feature: Add backup and restore
+	- Feature: Add duplicate button
+	- Bug fix: Don't give syntax errors if lookup return values contain " char (these are removed since it seems Asterisk cannot handle them in a GotoIf)
+	- Bug fix: Don't give syntax error when no mysql connection can be established (for example due to wrong host, username or password)
+	- Bug fix: DTMF was not working when source type None was used (due to a typo in the code)
+	- Bug fix: result variable not set to empty string if lookup returned empty string
+	- Bug fix: result variable not set to empty string on various mysql errors
+	- Bug fix: syntax error when no mysql DB name specified
+	- Updated: labels and Italian translation
+	- Removed: unmaintained Dutch translation
+
+2021 12 28
+	- Release 16.0.1
+
+2021 01 05
+	- Release 15.0.2
+
+2020 12 21
+	-Various fixes and enhancements
+	- Fixed a syntax error in views/form.php - missing $ in variable name
+	- Fixed a bug with dynamic route throwing exception on save in non English translations
+	- Removed duplicate field definition in module.xml
+	- Updated pot file with new strings
+	- Update Italian translations
+	- Tidy up remove image assets no longer used and updated copyright dates
+	- Added backup and restore module integration
+	- Fixed bug when using Asterisk Variable lookup type with REGEX due to incompatible semantics between [] used in REGEX and Dynamic Route variable substitutions. Now variable substitutions can be disabled. By default they are enabled to preserve backwards compatibility.
+
+2020 10 19
+	- Release 15.0.1
+
 2017 10 21
 	- Release 14.0.1
 	- Bug fix for deleting dynroute entries

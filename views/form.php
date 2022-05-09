@@ -102,7 +102,7 @@ foreach ($hooks as $key => $value) {
 			<div class="col-sm-9">
 				<div class="fpbx-container">
 					<div class="display full-border">
-						<form class='fpbx-submit' name="frm_dynroute" id="frm_dynroute" method="POST" action="" data-fpbx-delete="<?php echo $delURL?>">
+						<form class='fpbx-submit' name="frm_dynroute" id="frm_dynroute" method="POST" action="config.php?display=dynroute" data-fpbx-delete="<?php echo $delURL?>">
 						<input type="hidden" name="id" value="<?php echo $dynroute['id']?>">
 						<input type="hidden" name="invalid_dest" id="invalid_dest" value="">
 						<input type="hidden" name="default_dest" id="default_dest" value="">

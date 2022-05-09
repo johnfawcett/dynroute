@@ -262,10 +262,9 @@ function dynroute_configprocess(){
 				$_REQUEST['id'] = $vars['id'] = dynroute_save_details($vars);
 				dynroute_save_entries($vars['id'], $entries);
 				needreload();
-				$_REQUEST['action'] = 'edit';
 				$this_dest = dynroute_getdest($vars['id']);
-				fwmsg::set_dest($this_dest[0]);
-				redirect_standard_continue('id','action');
+				\fwmsg::set_dest($this_dest[0]);
+				redirect_standard_continue();
 			break;
 			case 'delete':
 				dynroute_delete($vars['id']);

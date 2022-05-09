@@ -10,7 +10,8 @@ if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 $get_vars = array(
 				'action' 		=> '',
 				'id'			=> '',
-				'display'		=> ''
+				'display'		=> '',
+				'view'			=> ''
 );
 foreach ($get_vars as $k => $v) {
 	$var[$k] = isset($_REQUEST[$k]) ? $_REQUEST[$k] : $v;
@@ -23,7 +24,7 @@ if(!$astman){
 	echo _("A connection to Asterisk Manager could not be made. This module requires Asterisk to be running and have proper credentials");
 	echo '</div>';
 }else{
-	if (!$action && !$id) {
+	if (!$action && !$id && $view !=='form') {
 	?>
 	<div class="container-fluid">
 		<h1><?php echo _('Dynamic Route')?></h1>
